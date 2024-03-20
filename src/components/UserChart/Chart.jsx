@@ -65,6 +65,8 @@ export const data = {
   ],
 };
 
+const chartIdMap = {};
+
 const Chart = (props) => {
   const options = {
     responsive: true,
@@ -80,15 +82,26 @@ const Chart = (props) => {
         max: 100,
         ticks: {
           callback: function (value, index, ticks) {
-            console.log(index, ticks);
-            return value + " % ";
+            // console.log(index, ticks);
+            if (props.dataType === "percentage") {
+              return value + " % ";
+            }
+            return value;
           },
         },
       },
     },
   };
-
-  const getLabel = () => {};
+  //   console.log(props.data);
+  if (chartIdMap[props.chartId]) {
+    chartIdMap[props.chartId]
+  }
+  const labels1 =
+    props.chartId === "ch_01" && props.data.map((label) => label.country);
+  const labels2 =
+    props.chartId === "ch_02" && props.data.map((label) => label.company);
+  console.log(labels1);
+  console.log(labels2);
   const data = {
     labels,
     datasets: [

@@ -10,8 +10,22 @@
       "organization": "ABC",
       "dob": "5-10-1985",
       "password": "",
-      "charts": ["ch_01", "ch_02"],
-      "produtFeatures": ["B001F001", "B001F002", "B002F001", "B002F002", "B003F001", "B003F002", "B004F001", "B004F002", "B005F001", "B005F002"]
+      "charts": [
+        "ch_01",
+        "ch_02"
+      ],
+      "productFeatures": [
+        "B001F001",
+        "B001F002",
+        "B002F001",
+        "B002F002",
+        "B003F001",
+        "B003F002",
+        "B004F001",
+        "B004F002",
+        "B005F001",
+        "B005F002"
+      ]
     },
     {
       "email": "mraj@example.com",
@@ -23,8 +37,13 @@
       "organization": "DEF",
       "dob": "5-10-1987",
       "password": "",
-      "charts": ["ch_01"],
-      "productFeatures": ["B001F001", "B001F002"]
+      "charts": [
+        "ch_01"
+      ],
+      "productFeatures": [
+        "B001F001",
+        "B001F002"
+      ]
     },
     {
       "email": "ssharma@example.com",
@@ -36,8 +55,17 @@
       "organization": "GHI",
       "dob": "5-10-1988",
       "password": "",
-      "charts": ["ch_01", "ch_02"],
-      "productFeatures": ["B001F001", "B001F002", "B001F003", "B001F004", "B001F005"]
+      "charts": [
+        "ch_01",
+        "ch_02"
+      ],
+      "productFeatures": [
+        "B001F001",
+        "B001F002",
+        "B001F003",
+        "B001F004",
+        "B001F005"
+      ]
     },
     {
       "email": "rmathur@example.com",
@@ -49,8 +77,13 @@
       "organization": "JKL",
       "dob": "5-10-1989",
       "password": "",
-      "charts": ["ch_02"],
-      "productFeatures": ["B002F001", "B002F002"]
+      "charts": [
+        "ch_02"
+      ],
+      "productFeatures": [
+        "B002F001",
+        "B002F002"
+      ]
     },
     {
       "email": "asingh@example.com",
@@ -62,232 +95,294 @@
       "organization": "MNO",
       "dob": "5-10-1992",
       "password": "",
-      "charts": ["ch_01", "ch_02"],
-      "productFeatures": ["B004F001", "B004F002", "B004F003", "B004F004", "B005F005"]
+      "charts": [
+        "ch_01",
+        "ch_02"
+      ],
+      "productFeatures": [
+        "B004F001",
+        "B004F002",
+        "B004F003",
+        "B004F004",
+        "B005F005"
+      ]
     }
   ],
   "products": [
-      {
-          "productId": "B001",
-          "productName": "Product One",
-          "features": [
-              {
-                  "featureId": "B001F001",
-                  "featureName": "Feature One One"
-              },
-              {
-                  "featureId": "B001F002",
-                  "featureName": "Feature One Two"
-              },
-              {
-                  "featureId": "B001F003",
-                  "featureName": "Feature One Three"
-              },
-              {
-                  "featureId": "B001F004",
-                  "featureName": "Feature One Four"
-              },
-              {
-                  "featureId": "B001F005",
-                  "featureName": "Feature One Five"
-              }
-          ]
-      },
-      {
-          "productId": "B002",
-          "productName": "Product Two",
-          "features": [
-              {
-                  "featureId": "B002F001",
-                  "featureName": "Feature Two One"
-              },
-              {
-                  "featureId": "B002F002",
-                  "featureName": "Feature Two Two"
-              },
-              {
-                  "featureId": "B002F003",
-                  "featureName": "Feature Two Three"
-              },
-              {
-                  "featureId": "B002F004",
-                  "featureName": "Feature Two Four"
-              },
-              {
-                  "featureId": "B002F005",
-                  "featureName": "Feature Two Five"
-              }
-          ]
-      },
-      {
-          "productId": "B003",
-          "productName": "Product Three",
-          "features": [
-              {
-                  "featureId": "B003F001",
-                  "featureName": "Feature Three One"
-              },
-              {
-                  "featureId": "B003F002",
-                  "featureName": "Feature Three Two"
-              },
-              {
-                  "featureId": "B003F003",
-                  "featureName": "Feature Three Three"
-              },
-              {
-                  "featureId": "B003F004",
-                  "featureName": "Feature Three Four"
-              },
-              {
-                  "featureId": "B003F005",
-                  "featureName": "Feature Three Five"
-              }
-          ]
-      },
-      {
-          "productId": "B004",
-          "productName": "Product Four",
-          "features": [
-              {
-                  "featureId": "B004F001",
-                  "featureName": "Feature Four One"
-              },
-              {
-                  "featureId": "B004F002",
-                  "featureName": "Feature Four Two"
-              },
-              {
-                  "featureId": "B004F003",
-                  "featureName": "Feature Four Three"
-              },
-              {
-                  "featureId": "B004F004",
-                  "featureName": "Feature Four Four"
-              },
-              {
-                  "featureId": "B004F005",
-                  "featureName": "Feature Four Five"
-              }
-          ]
-      },
-      {
-          "productId": "B005",
-          "productName": "Product Five",
-          "features": [
-              {
-                  "featureId": "B005F001",
-                  "featureName": "Feature Five One"
-              },
-              {
-                  "featureId": "B005F002",
-                  "featureName": "Feature Four Two"
-              },
-              {
-                  "featureId": "B005F003",
-                  "featureName": "Feature Four Three"
-              },
-              {
-                  "featureId": "B005F004",
-                  "featureName": "Feature Four Four"
-              },
-              {
-                  "featureId": "B005F005",
-                  "featureName": "Feature Four Five"
-              }
-          ]
-      }
+    {
+      "productId": "B001",
+      "productName": "Product One",
+      "basePrice": 10,
+      "features": [
+        {
+          "type": "Basic",
+          "featureId": "B001F001",
+          "featureName": "Feature One One",
+          "basePrice": 0
+        },
+        {
+          "type": "Basic",
+          "featureId": "B001F002",
+          "featureName": "Feature One Two",
+          "basePrice": 0
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B001F003",
+          "featureName": "Feature One Three",
+          "basePrice": 5
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B001F004",
+          "featureName": "Feature One Four",
+          "basePrice": 5
+        },
+        {
+          "type": "Enterprise",
+          "featureId": "B001F005",
+          "featureName": "Feature One Five",
+          "basePrice": 10
+        }
+      ]
+    },
+    {
+      "productId": "B002",
+      "productName": "Product Two",
+      "basePrice": 15,
+      "features": [
+        {
+          "type": "Basic",
+          "featureId": "B002F001",
+          "featureName": "Feature Two One",
+          "basePrice": 0
+        },
+        {
+          "type": "Basic",
+          "featureId": "B002F002",
+          "featureName": "Feature Two Two",
+          "basePrice": 0
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B002F003",
+          "featureName": "Feature Two Three",
+          "basePrice": 5
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B002F004",
+          "featureName": "Feature Two Four",
+          "basePrice": 5
+        },
+        {
+          "type": "Enterprise",
+          "featureId": "B002F005",
+          "featureName": "Feature Two Five",
+          "basePrice": 10
+        }
+      ]
+    },
+    {
+      "productId": "B003",
+      "productName": "Product Three",
+      "basePrice": 20,
+      "features": [
+        {
+          "type": "Basic",
+          "featureId": "B003F001",
+          "featureName": "Feature Three One",
+          "basePrice": 0
+        },
+        {
+          "type": "Basic",
+          "featureId": "B003F002",
+          "featureName": "Feature Three Two",
+          "basePrice": 0
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B003F003",
+          "featureName": "Feature Three Three",
+          "basePrice": 5
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B003F004",
+          "featureName": "Feature Three Four",
+          "basePrice": 5
+        },
+        {
+          "type": "Enterprise",
+          "featureId": "B003F005",
+          "featureName": "Feature Three Five",
+          "basePrice": 10
+        }
+      ]
+    },
+    {
+      "productId": "B004",
+      "productName": "Product Four",
+      "basePrice": 25,
+      "features": [
+        {
+          "type": "Basic",
+          "featureId": "B004F001",
+          "featureName": "Feature Four One",
+          "basePrice": 0
+        },
+        {
+          "type": "Basic",
+          "featureId": "B004F002",
+          "featureName": "Feature Four Two",
+          "basePrice": 0
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B004F003",
+          "featureName": "Feature Four Three",
+          "basePrice": 5
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B004F004",
+          "featureName": "Feature Four Four",
+          "basePrice": 5
+        },
+        {
+          "type": "Enterprise",
+          "featureId": "B004F005",
+          "featureName": "Feature Four Five",
+          "basePrice": 10
+        }
+      ]
+    },
+    {
+      "productId": "B005",
+      "productName": "Product Five",
+      "basePrice": 30,
+      "features": [
+        {
+          "type": "Basic",
+          "featureId": "B005F001",
+          "featureName": "Feature Five One",
+          "basePrice": 0
+        },
+        {
+          "type": "Basic",
+          "featureId": "B005F002",
+          "featureName": "Feature Four Two",
+          "basePrice": 0
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B005F003",
+          "featureName": "Feature Four Three",
+          "basePrice": 5
+        },
+        {
+          "type": "Intermediate",
+          "featureId": "B005F004",
+          "featureName": "Feature Four Four",
+          "basePrice": 5
+        },
+        {
+          "type": "Enterprise",
+          "featureId": "B005F005",
+          "featureName": "Feature Four Five",
+          "basePrice": 10
+        }
+      ]
+    }
   ],
   "analytics": [
-      {
-          "chartId": "ch_01",
-          "title": "Phishing by Country and User Awarness",
-          "dataType": "percentage",
-          "data": [
-              {
-                  "country": "United States",
-                  "phising": 74,
-                  "awarness": 52
-              },
-              {
-                  "country": "United Kingdom",
-                  "phising": 66,
-                  "awarness": 69
-              },
-              {
-                  "country": "Australia",
-                  "phising": 60,
-                  "awarness": 66
-              },
-              {
-                  "country": "Japan",
-                  "phising": 56,
-                  "awarness": 66
-              },
-              {
-                  "country": "France",
-                  "phising": 48,
-                  "awarness": 63
-              },
-              {
-                  "country": "Germany",
-                  "phising": 47,
-                  "awarness": 64
-              }
-
-          ]
+    {
+      "chartId": "ch_01",
+      "title": "Phishing by Country and User Awarness",
+      "dataType": "percentage",
+      "data": [
+        {
+          "country": "United States",
+          "phising": 74,
+          "awarness": 52
+        },
+        {
+          "country": "United Kingdom",
+          "phising": 66,
+          "awarness": 69
+        },
+        {
+          "country": "Australia",
+          "phising": 60,
+          "awarness": 66
+        },
+        {
+          "country": "Japan",
+          "phising": 56,
+          "awarness": 66
+        },
+        {
+          "country": "France",
+          "phising": 48,
+          "awarness": 63
+        },
+        {
+          "country": "Germany",
+          "phising": 47,
+          "awarness": 64
+        }
+      ]
+    },
+    {
+      "chartId": "ch_02",
+      "title": "Data Loss By Companies",
+      "dataType": "count",
+      "locals": {
+        "data-loss": "GB",
+        "currency": "Dollars"
       },
-      {
-          "chartId": "ch_02",
-          "title": "Data Loss By Companies",
-          "dataType": "count",
-          "locals": {
-              "data-loss": "GB",
-              "currency": "Dollars"
-          },
-          "data": [
-              {
-                  "company": "ABC",
-                  "data-loss": 20,
-                  "comromised-accounts": 28,
-                  "ransomware": 3,
-                  "malware": 4,
-                  "total-financial-loss": 27000
-              },
-              {
-                  "company": "DEF",
-                  "data-loss": 2,
-                  "comromised-accounts": 8,
-                  "ransomware": 0,
-                  "malware": 2,
-                  "total-financial-loss": 13000
-              },
-              {
-                  "company": "GHI",
-                  "data-loss": 200,
-                  "comromised-accounts": 50,
-                  "ransomware": 40,
-                  "malware": 0,
-                  "total-financial-loss": 57000
-              },
-              {
-                  "company": "JKL",
-                  "data-loss": 300,
-                  "comromised-accounts": 62,
-                  "ransomware": 5,
-                  "malware": 14,
-                  "total-financial-loss": 120000
-              },
-              {
-                  "company": "MNO",
-                  "data-loss": 80,
-                  "comromised-accounts": 48,
-                  "ransomware": 10,
-                  "malware": 14,
-                  "total-financial-loss": 58000
-              }
-
-          ]
-      }
+      "data": [
+        {
+          "company": "ABC",
+          "data-loss": 20,
+          "compromised-accounts": 28,
+          "ransomware": 3,
+          "malware": 4,
+          "total-financial-loss": 27000
+        },
+        {
+          "company": "DEF",
+          "data-loss": 2,
+          "compromised-accounts": 8,
+          "ransomware": 0,
+          "malware": 2,
+          "total-financial-loss": 13000
+        },
+        {
+          "company": "GHI",
+          "data-loss": 200,
+          "compromised-accounts": 50,
+          "ransomware": 40,
+          "malware": 0,
+          "total-financial-loss": 57000
+        },
+        {
+          "company": "JKL",
+          "data-loss": 300,
+          "compromised-accounts": 62,
+          "ransomware": 5,
+          "malware": 14,
+          "total-financial-loss": 120000
+        },
+        {
+          "company": "MNO",
+          "data-loss": 80,
+          "compromised-accounts": 48,
+          "ransomware": 10,
+          "malware": 14,
+          "total-financial-loss": 58000
+        }
+      ]
+    }
   ]
 }

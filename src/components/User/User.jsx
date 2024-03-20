@@ -3,13 +3,20 @@
 import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
 import UserChart from "../UserChart/UserChart";
+import { Link, useLocation, useParams } from "react-router-dom";
 
 const User = ({ username }) => {
   const allUser = useSelector(selectUsersSelector) || [];
   console.log(allUser);
-  const user = allUser.find((user) => user.username);
-  console.log(user)
-  const chartsList = user.charts
+  const user = allUser.find(
+    (user) => user.username.toLowerCase() === username.toLowerCase()
+  );
+  console.log(user);
+  const chartsList = user.charts;
+  let { pathname } = useLocation();
+  console.log({
+    pathname,
+  });
   return (
     <>
       <h1>User is {username} </h1>
@@ -20,7 +27,10 @@ const User = ({ username }) => {
         </article>
       </div>
       <div>
-        <UserChart charts={chartsList}/>
+        <Link to={`products`}>Products</Link>
+      </div>
+      <div>
+        <UserChart charts={chartsList} />
       </div>
     </>
   );

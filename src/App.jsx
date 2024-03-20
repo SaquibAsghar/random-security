@@ -2,6 +2,9 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
+import NotFound404 from "./components/NotFound/NotFound404";
+import ProductPage from "./pages/ProductPage";
+import Features from "./components/ProductFeatures/Features";
 
 function App() {
   return (
@@ -9,7 +12,13 @@ function App() {
       <Navbar />
       <Routes>
         <Route exact path="/" element={<HomePage />} />
-        <Route exact path="/user/:username/dashboard" element={<UserPage />} />
+        <Route path="/user/:username/dashboard">
+          <Route index element={<UserPage />} />
+          <Route path="products" element={<ProductPage />}>
+            <Route path=":productId" element={<Features />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<NotFound404 />} />
       </Routes>
     </Router>
   );

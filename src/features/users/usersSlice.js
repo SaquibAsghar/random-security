@@ -7,11 +7,17 @@ console.log(initialState);
 const usersSlice = createSlice({
   name: "users",
   initialState,
-  reducers: {},
+  reducers: {
+    addFeature: (state) => {
+      console.log(state);
+      return state;
+      // state.users.productFeatures.push("saquib");
+    },
+  },
 });
 
 export const selectUsersSelector = (state) => state.users;
 
-// export const {} = usersSlice.actions
+export const { addFeature } = usersSlice.actions;
 
 export default usersSlice.reducer;
