@@ -10,14 +10,15 @@ const cartSlice = createSlice({
   reducers: {
     addToPurchase: (state, action) => {
       const { username, featureId } = action.payload;
-      if (
-        state.cartItems[username] &&
-        !state.cartItems[username].includes(featureId)
-      ) {
-        state.cartItems[username].push(featureId);
+      if (!state.cartItems[username]) {
+        state.cartItems[username] = [featureId];
         return state;
       }
-      state.cartItems[username] = [featureId];
+      if (state.cartItems[username].includes(featureId)) {
+        return state;
+      }
+      state.cartItems[username].push(featureId);
+      return state;
     },
     removeFromPurchase: (state) => state.cartItems,
     resetToInitial: (state) => (state.cartItems = {}),
