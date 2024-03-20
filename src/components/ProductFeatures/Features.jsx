@@ -6,6 +6,7 @@ import {
   //   selectThisProduct,
 } from "../../features/products/productsSlice";
 import { addFeature } from "../../features/users/usersSlice";
+import { addToPurchase } from "../../features/cart/cartSlice";
 
 const Features = () => {
   const { username, productId } = useParams();
@@ -33,7 +34,9 @@ const Features = () => {
               <div key={featureId} style={{ marginBlock: "30px" }}>
                 <span>Type: {type}</span>
                 <br />
-                <span onClick={() => dispatch(addFeature())}>
+                <span
+                  onClick={() => dispatch(addFeature({ username, featureId }))}
+                >
                   Feature Name: {featureName}
                 </span>
                 <br />
@@ -44,6 +47,20 @@ const Features = () => {
                     ? "do not select"
                     : "can select this feature"}
                 </span>
+                <br />
+                <br />
+                {productFeatures.includes(featureId) ? (
+                  "Already brought this feature"
+                ) : (
+                  <button
+                    onClick={() => {
+                      dispatch(addToPurchase({ username, featureId }));
+                    }}
+                  >
+                    Buy this feature
+                  </button>
+                )}
+
                 <hr />
               </div>
             ))}
