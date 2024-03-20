@@ -1,7 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  cartItems: {},
+  cartItems: {
+    rtripati: ["B001F001", "BOO1F002", "BOO3F003"],
+  },
 };
 
 const cartSlice = createSlice({
@@ -25,7 +27,7 @@ const cartSlice = createSlice({
   },
 });
 
-export const selectPurchase = (state) => state;
+export const selectCartList = (state) => state.cart.cartItems;
 
 export const { addToPurchase, removeFromPurchase, resetToInitial } =
   cartSlice.actions;

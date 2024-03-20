@@ -10,6 +10,7 @@ import { addToPurchase } from "../../features/cart/cartSlice";
 
 const Features = () => {
   const { username, productId } = useParams();
+  console.log({ username, productId });
   const { productFeatures } = useSelector((state) =>
     state.users.find(
       (user) => user.username.toLowerCase() === username.toLowerCase()
