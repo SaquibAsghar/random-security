@@ -7,7 +7,7 @@ import { useCurrentUserContext } from "../../app/context/currentUser";
 const Home = () => {
   const navigate = useNavigate();
   const users = useSelector(selectUsersSelector);
-  const {setCurrentUser} = useCurrentUserContext()
+  const { setCurrentUser } = useCurrentUserContext();
   // const [, setCurrentUser] = useState("");
   console.log(users);
   const userOptions = users.map((user) => (
@@ -17,16 +17,14 @@ const Home = () => {
   ));
   const onChangeUser = (e) => {
     const { value } = e.target;
-    if (value !== "none_selected") {
-      setCurrentUser(value);
-      navigate(`/user/${value}/dashboard`);
-    }
+    setCurrentUser(value);
+    navigate(`/user/${value}/dashboard`);
   };
   return (
     <>
       <div>Home</div>
       <select name="" id="" onChange={onChangeUser}>
-        <option value="none_selected">Select User</option>
+        {/* <option value="none_selected">Select User</option> */}
         {userOptions}
       </select>
     </>

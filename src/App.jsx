@@ -13,7 +13,6 @@ function App() {
       <Routes>
         <Route exact path="/" element={<HomePage />} />
         <Route path="/user/:username/dashboard" element={<UserPage />}>
-          {/* <Route index /> */}
           <Route path="products" element={<ProductPage />}>
             <Route path=":productId" element={<Features />} />
           </Route>

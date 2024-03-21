@@ -23,7 +23,9 @@ const Features = () => {
   const dispatch = useDispatch();
   return (
     <>
-      <div>
+      <div
+        style={{overflowY: 'scroll'}}
+      >
         <p>Features of the product {productId}</p>
         <div>
           <h2>Details</h2>
