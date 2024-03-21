@@ -20,11 +20,22 @@ const usersSlice = createSlice({
         return user;
       });
     },
+    addBulkFeatureFromCart: function (state, action) {
+      const { username, purchasedItems } = action.payload;
+      console.log(purchasedItems);
+      state.forEach(user => {
+        if(user.username === username) {
+          user.productFeatures = [...new Set([...user.productFeatures, ...purchasedItems])]
+        }
+      })
+
+      state;
+    },
   },
 });
 
 export const selectUsersSelector = (state) => state.users;
 
-export const { addFeature } = usersSlice.actions;
+export const { addFeature, addBulkFeatureFromCart } = usersSlice.actions;
 
 export default usersSlice.reducer;

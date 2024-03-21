@@ -22,14 +22,29 @@ const cartSlice = createSlice({
       state.cartItems[username].push(featureId);
       return state;
     },
-    removeFromPurchase: (state) => state.cartItems,
-    resetToInitial: (state) => (state.cartItems = {}),
+    completePurchase: (state) => state,
+    removeFromPurchase: (state, action) => {
+      const { username, cart } = action.payload;
+      state.cartItems[username] = state.cartItems[username].filter(
+        (purchaseItem) => purchaseItem !== cart
+      );
+      return state;
+    },
+    resetToInitial: (state, action) => {
+      const { username} = action.payload;
+      state.cartItems[username] = [];
+      return state;
+    },
   },
 });
 
 export const selectCartList = (state) => state.cart.cartItems;
 
-export const { addToPurchase, removeFromPurchase, resetToInitial } =
-  cartSlice.actions;
+export const {
+  addToPurchase,
+  removeFromPurchase,
+  resetToInitial,
+  completePurchase,
+} = cartSlice.actions;
 
 export default cartSlice.reducer;
