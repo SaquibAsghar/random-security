@@ -10,21 +10,27 @@
       "organization": "ABC",
       "dob": "5-10-1985",
       "password": "",
-      "charts": [
-        "ch_01",
-        "ch_02"
-      ],
+      "charts": ["ch_01", "ch_02"],
       "productFeatures": [
         "B001F001",
         "B001F002",
+        "B001F003",
+
         "B002F001",
         "B002F002",
+        "B002F004",
+
         "B003F001",
         "B003F002",
+        "B003F004",
+
         "B004F001",
         "B004F002",
+        "B004F003",
+
         "B005F001",
-        "B005F002"
+        "B005F002",
+        "B005F003"
       ]
     },
     {
@@ -37,13 +43,8 @@
       "organization": "DEF",
       "dob": "5-10-1987",
       "password": "",
-      "charts": [
-        "ch_01"
-      ],
-      "productFeatures": [
-        "B001F001",
-        "B001F002"
-      ]
+      "charts": ["ch_01"],
+      "productFeatures": ["B001F001", "B001F002", "B001F004"]
     },
     {
       "email": "ssharma@example.com",
@@ -55,10 +56,7 @@
       "organization": "GHI",
       "dob": "5-10-1988",
       "password": "",
-      "charts": [
-        "ch_01",
-        "ch_02"
-      ],
+      "charts": ["ch_01", "ch_02"],
       "productFeatures": [
         "B001F001",
         "B001F002",
@@ -77,13 +75,8 @@
       "organization": "JKL",
       "dob": "5-10-1989",
       "password": "",
-      "charts": [
-        "ch_02"
-      ],
-      "productFeatures": [
-        "B002F001",
-        "B002F002"
-      ]
+      "charts": ["ch_02"],
+      "productFeatures": ["B002F001", "B002F002", "B002F004"]
     },
     {
       "email": "asingh@example.com",
@@ -95,15 +88,16 @@
       "organization": "MNO",
       "dob": "5-10-1992",
       "password": "",
-      "charts": [
-        "ch_01",
-        "ch_02"
-      ],
+      "charts": ["ch_01", "ch_02"],
       "productFeatures": [
         "B004F001",
         "B004F002",
         "B004F003",
         "B004F004",
+        "B005F001",
+        "B005F002",
+        "B005F003",
+        "B005F004",
         "B005F005"
       ]
     }

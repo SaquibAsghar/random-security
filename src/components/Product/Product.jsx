@@ -6,10 +6,15 @@ const Product = (props) => {
   return (
     <>
       {props.list.map((product) => (
-        <div key={product.productId}>
-          <h1>
-            <Link to={product.productId}>{product.productName}</Link>
-          </h1>
+        <div key={product.productId} style={{ marginBlock: "22px" }}>
+          <header style={{ fontSize: "28px", fontWeight: 600}}>
+            <Link
+              to={product.productId}
+              style={{ textDecoration: "none", color: "#000" }}
+            >
+              {product.productName}
+            </Link>
+          </header>
         </div>
       ))}
     </>

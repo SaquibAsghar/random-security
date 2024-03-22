@@ -7,8 +7,7 @@ console.log(data.products);
 const productsSlice = createSlice({
   name: "products",
   initialState,
-  reducers: {
-  },
+  reducers: {},
 });
 
 // export const {} = productsSlice.actions;

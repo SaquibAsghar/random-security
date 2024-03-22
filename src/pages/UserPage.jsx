@@ -1,5 +1,5 @@
 // import React from 'react';
-import { useParams } from "react-router-dom";
+import { useParams, Outlet } from "react-router-dom";
 import User from "../components/User/User";
 
 const UserPage = () => {

@@ -7,13 +7,15 @@ import Product from "../Product/Product";
 const ProductList = (props) => {
   return (
     <>
-      <div>ProductList</div>
+      <div>
+        <h2 style={{ fontSize: "xx-large" }}>Our Products</h2>
+      </div>
       <div
         style={{
-          display: "grid",
-          gridTemplateColumns: '1fr 1fr',
+          display: "flex",
+          justifyContent: "space-between",
           height: "450px",
-          border: "1px solid plum"
+          border: "1px solid plum",
         }}
       >
         <div>

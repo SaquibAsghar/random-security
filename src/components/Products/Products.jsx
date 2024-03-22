@@ -10,8 +10,8 @@ const Products = () => {
   console.log(allProducts);
   return (
     <>
-      <div>Products</div>
-      <button onClick={() => navigate(-1)}>Back to dashboard</button>
+      {/* <div>Products</div>
+      <button onClick={() => navigate(-1)}>Back to dashboard</button> */}
       <div>
         <ProductList list={allProducts} />
       </div>

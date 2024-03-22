@@ -94,7 +94,7 @@ const Chart = (props) => {
   };
   //   console.log(props.data);
   if (chartIdMap[props.chartId]) {
-    chartIdMap[props.chartId]
+    chartIdMap[props.chartId];
   }
   const labels1 =
     props.chartId === "ch_01" && props.data.map((label) => label.country);
@@ -121,7 +121,11 @@ const Chart = (props) => {
     ],
   };
 
-  return <Bar options={options} data={data} />;
+  return (
+    <div style={{ width: "550px" }}>
+      <Bar options={options} data={data} />
+    </div>
+  );
 };
 
 export default Chart;

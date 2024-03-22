@@ -3,10 +3,17 @@
 import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
 import UserChart from "../UserChart/UserChart";
-import { Link, useLocation, Outlet } from "react-router-dom";
+import {
+  Link,
+  useLocation,
+  Outlet,
+  useNavigate,
+  useParams,
+} from "react-router-dom";
 
 const User = ({ username }) => {
   const allUser = useSelector(selectUsersSelector) || [];
+  const navigate = useNavigate();
   console.log(allUser);
   const user = allUser.find(
     (user) => user.username.toLowerCase() === username.toLowerCase()
@@ -19,6 +26,38 @@ const User = ({ username }) => {
   });
   return (
     <>
+      <div style={{ marginBlock: "20px" }}>
+        <Link
+          to={`/user/${username}`}
+          style={{
+            textDecoration: "none",
+            color: "#000",
+            marginInlineEnd: "20px",
+          }}
+        >
+          Dashboard
+        </Link>
+        <Link
+          to="products"
+          style={{
+            textDecoration: "none",
+            color: "#000",
+            marginInlineEnd: "20px",
+          }}
+        >
+          Products
+        </Link>
+        <Link
+          to="analytics"
+          style={{
+            textDecoration: "none",
+            color: "#000",
+            marginInlineEnd: "20px",
+          }}
+        >
+          Analytics
+        </Link>
+      </div>
       <h1>Welcome {user.displayname} </h1>
       <div style={{ marginBlock: "24px" }}>
         <section
@@ -71,12 +110,7 @@ const User = ({ username }) => {
           {/* <div>{JSON.stringify(user)}</div> */}
         </section>
       </div>
-      <div>
-        <Link to={`products`}>Products</Link>
-      </div>
-      <div>
-        <UserChart charts={chartsList} />
-      </div>
+      <div>{/* <UserChart charts={chartsList} /> */}</div>
       <Outlet />
     </>
   );

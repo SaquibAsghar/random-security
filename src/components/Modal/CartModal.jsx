@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useLocation } from "react-router-dom";
 import { useCurrentUserContext } from "../../app/context/currentUser";
 import {
   completePurchase,
@@ -10,26 +10,101 @@ import {
 } from "../../features/cart/cartSlice";
 import { addBulkFeatureFromCart } from "../../features/users/usersSlice";
 
+const uniqueProduct = [];
+const discountOnProducts = {
+  2: 5,
+  3: 8,
+  4: 10,
+  5: 15,
+};
 const CartModal = (props) => {
+  const { productId } = useParams();
+  let location = useLocation();
+  console.log({
+    location,
+  });
+  console.log({ productId });
+  let cartPrice = 0;
   const { currentUser } = useCurrentUserContext();
   const [isProcessing, setIsProcessing] = useState(false);
   const dispatch = useDispatch();
-  let cartList = useSelector((state) => state.cart.cartItems["rtripati"]);
+  console.log({ currentUser });
+  let cartList = useSelector(
+    (state) => state.cart.cartItems[currentUser] || {}
+  );
   console.log(cartList);
+  const productList = useSelector((state) =>
+    state.products.map((product) => product.productId)
+  );
+  function calcTotalProductFeatures() {
+    let featureList = [];
+    for (let key of Object.keys(cartList)) {
+      featureList = [
+        ...new Set([...cartList[key].featureToPurchase, ...featureList]),
+      ];
+    }
+    console.log(featureList);
+    return featureList;
+  }
   const processCheckout = () => {
     setIsProcessing(true);
     setTimeout(() => {
       dispatch(completePurchase());
       dispatch(
         addBulkFeatureFromCart({
-          username: "rtripati",
-          purchasedItems: cartList,
+          username: currentUser,
+          purchasedItems: calcTotalProductFeatures(),
         })
       );
-      dispatch(resetToInitial({ username: "rtripati" }));
+      dispatch(resetToInitial({ username: currentUser }));
       setIsProcessing(false);
     }, 2000);
   };
+
+  function calculateFinalPrice(discount = 0) {
+    if (discount > 1) {
+      return cartPrice - (cartPrice * discount) / 100;
+    }
+    return cartPrice;
+  }
+
+  function renderList(list) {
+    const purchaseList = Object.entries(list);
+    return purchaseList.map(([productId, featureList]) => {
+      if (!uniqueProduct.includes(productId.substring(0, 4))) {
+        uniqueProduct.push(productId.substring(0, 4));
+      }
+      cartPrice += featureList.price;
+      return (
+        <div
+          key={productId}
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <>
+            <span>{productId.substring(0, 4)}</span>
+            <span>{featureList.featureToPurchase.toString()}</span>
+            <span>{featureList.price}</span>
+            <span
+              style={{ cursor: "pointer" }}
+              onClick={() =>
+                dispatch(
+                  removeFromPurchase({
+                    username: currentUser,
+                    featureId: productId,
+                  })
+                )
+              }
+            >
+              &times;
+            </span>
+          </>
+        </div>
+      );
+    });
+  }
 
   return (
     <>
@@ -58,51 +133,49 @@ const CartModal = (props) => {
             </span>
           </div>
           <br />
-          {cartList.length === 0 && (
+          {!Object.keys(cartList).length && (
             <>
               <div>
                 <p>You don&apos;t have any product to purchase</p>
               </div>
             </>
           )}
-          {!!cartList.length && (
+          {cartList && !!Object.keys(cartList).length && (
             <>
-              <div style={{ marginBlock: "24px" }}>
-                {cartList.map((cart) => {
-                  return (
-                    <div
-                      key={cart}
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                      }}
-                    >
-                      <>
-                        <span>{cart.substring(0, 4)}</span>
-                        <span>{cart}</span>
-                        <span>1000</span>
-                        <span
-                          style={{ cursor: "pointer" }}
-                          onClick={() =>
-                            dispatch(
-                              removeFromPurchase({ username: "rtripati", cart })
-                            )
-                          }
-                        >
-                          &times;
-                        </span>
-                      </>
-                    </div>
-                  );
-                })}
+              <div style={{ marginBlock: "24px" }}>{renderList(cartList)}</div>
+
+              <div>
+                <p>Total Product qunatity: {uniqueProduct.length}</p>
+                <p>Original Price: ${cartPrice}</p>
+                {uniqueProduct.length > 1 ? (
+                  <>
+                    <p>
+                      Discount Rate: {discountOnProducts[uniqueProduct.length]}%
+                    </p>
+                    <p>
+                      Discount Amount: $
+                      {(cartPrice * discountOnProducts[uniqueProduct.length]) /
+                        100}
+                    </p>
+                    <p>
+                      Final Price after discount: $
+                      {calculateFinalPrice(
+                        discountOnProducts[uniqueProduct.length]
+                      )}
+                    </p>
+                  </>
+                ) : (
+                  <p>Final Price after discount {calculateFinalPrice()}</p>
+                )}
               </div>
+              {/* Button */}
               <div style={{ display: "flex", justifyContent: "end" }}>
                 <div style={{}}>
                   <button
                     type="button"
                     style={{ cursor: "pointer" }}
                     onClick={() =>
-                      dispatch(resetToInitial({ username: "rtripati" }))
+                      dispatch(resetToInitial({ username: currentUser }))
                     }
                   >
                     Clear Purchase

@@ -7,7 +7,9 @@ import CartModal from "../Modal/CartModal";
 
 const Navbar = () => {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
-  const toggleCartModal = () => {setIsCartModalOpen(prevState => !prevState)}
+  const toggleCartModal = () => {
+    setIsCartModalOpen((prevState) => !prevState);
+  };
   const cart = useSelector((state) => state.cart.cartItems);
   console.log(cart);
   return (
@@ -55,13 +57,15 @@ const Navbar = () => {
           </li>
         </ul>
         <div>
-          <span style={{ cursor: "pointer" }} onClick={toggleCartModal}>Cart icon</span>
+          <span style={{ cursor: "pointer" }} onClick={toggleCartModal}>
+            Cart icon
+          </span>
         </div>
       </div>
       <div>
         <Home />
       </div>
-      {isCartModalOpen && <CartModal toggleCartModal={toggleCartModal}/>}
+      {isCartModalOpen && <CartModal toggleCartModal={toggleCartModal} />}
     </>
   );
 };
