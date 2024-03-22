@@ -15,7 +15,7 @@ const AnalyticsPage = () => {
       <header style={{ fontSize: "xx-large", fontWeight: 700 }}>
         Analytics
       </header>
-      <UserChart />
+      <UserChart userDisplayChartList = {user.charts} userOrganiztaion={user.organization} />
     </>
   );
 };

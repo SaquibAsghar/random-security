@@ -1,6 +1,4 @@
 /* eslint-disable react/prop-types */
-import React from "react";
-import { useSelector } from "react-redux";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -11,7 +9,6 @@ import {
   Legend,
 } from "chart.js";
 import { Bar } from "react-chartjs-2";
-import { selectAnalyticsSelector } from "../../features/analytics/analyticsSlice";
 
 ChartJS.register(
   CategoryScale,
@@ -65,8 +62,6 @@ export const data = {
   ],
 };
 
-const chartIdMap = {};
-
 const Chart = (props) => {
   const options = {
     responsive: true,
@@ -92,32 +87,24 @@ const Chart = (props) => {
       },
     },
   };
-  //   console.log(props.data);
-  if (chartIdMap[props.chartId]) {
-    chartIdMap[props.chartId];
-  }
-  const labels1 =
-    props.chartId === "ch_01" && props.data.map((label) => label.country);
-  const labels2 =
-    props.chartId === "ch_02" && props.data.map((label) => label.company);
-  console.log(labels1);
-  console.log(labels2);
+  const labels = props.data.map((label) => label.country);
+  const phisingData = props.data.map((phish) => phish.phising);
+  const awarnessData = props.data.map((awar) => (awar.awarness * 100) / 100);
   const data = {
     labels,
     datasets: [
       {
-        label: "Dataset 1",
-        data: [5000 / 100, 6700 / 100, 9000 / 100],
+        label: "Awareness",
+        data: awarnessData,
         backgroundColor: "red",
         yAxisID: "yAxis",
       },
       {
-        label: "Dataset 2",
-        data: [2700 / 100, 3400 / 100, 7500 / 100],
+        label: "Phising",
+        data: phisingData,
         backgroundColor: "rgba(53, 162, 235, 0.5)",
         yAxisID: "yAxis",
       },
-      // { yAxisID: "yAxis" },
     ],
   };
 
