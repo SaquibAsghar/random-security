@@ -9,6 +9,14 @@ import {
   resetToInitial,
 } from "../../features/cart/cartSlice";
 import { addBulkFeatureFromCart } from "../../features/users/usersSlice";
+import {
+  EmptyCartMessage,
+  Modal,
+  Overlay,
+  OverlayCross,
+  OverlayHeader,
+  OverlayTitle,
+} from "./Modal.style";
 
 const uniqueProduct = [];
 const discountOnProducts = {
@@ -108,37 +116,14 @@ const CartModal = (props) => {
 
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center",
-          backgroundColor: "#5f575791",
-          inset: 0,
-        }}
-      >
-        <div
-          style={{
-            backgroundColor: "#fafafa",
-            width: "700px",
-            height: "500px",
-            padding: "24px",
-          }}
-        >
-          <div style={{ display: "flex" }}>
-            <span style={{ marginInline: "auto" }}>Cart Model</span>
-            <span onClick={props.toggleCartModal} style={{ cursor: "pointer" }}>
-              &times;
-            </span>
-          </div>
-          <br />
+      <Modal>
+        <Overlay>
+          <OverlayHeader>
+            <OverlayTitle>Billing</OverlayTitle>
+            <OverlayCross onClick={props.toggleCartModal}>&times;</OverlayCross>
+          </OverlayHeader>
           {!Object.keys(cartList).length && (
-            <>
-              <div>
-                <p>You don&apos;t have any product to purchase</p>
-              </div>
-            </>
+              <EmptyCartMessage>You don&apos;t have any product to purchase</EmptyCartMessage>
           )}
           {cartList && !!Object.keys(cartList).length && (
             <>
@@ -194,8 +179,8 @@ const CartModal = (props) => {
               {isProcessing && <span>Processing your order please wait</span>}
             </>
           )}
-        </div>
-      </div>
+        </Overlay>
+      </Modal>
     </>
   );
 };

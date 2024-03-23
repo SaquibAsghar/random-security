@@ -1,6 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const initialState = {
+/*
   cartItems: {
     rtripati: ["B001F001", "BOO1F002", "BOO3F003"],
     username: {
@@ -12,6 +12,11 @@ const initialState = {
       },
     },
   },
+
+*/
+
+const initialState = {
+  cartItems: {},
 };
 
 const cartSlice = createSlice({
