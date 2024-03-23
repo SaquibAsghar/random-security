@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { selectUsersSelector } from "../../features/users/usersSlice";
 import { useCurrentUserContext } from "../../app/context/currentUser";
+import { Select } from "./Home.style";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -22,11 +23,12 @@ const Home = () => {
   };
   return (
     <>
-      <div>Home</div>
-      <select name="" id="" onChange={onChangeUser}>
-        {/* <option value="none_selected">Select User</option> */}
-        {userOptions}
-      </select>
+      <div>
+        <span>Current User: </span>
+        <Select name="" id="" onChange={onChangeUser}>
+          {userOptions}
+        </Select>
+      </div>
     </>
   );
 };

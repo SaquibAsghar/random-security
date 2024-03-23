@@ -10,6 +10,7 @@ import {
   addToPurchase,
   removeFromPurchase,
 } from "../../features/cart/cartSlice";
+import { Button } from "./Feature.style";
 
 let featureToPurchase = [];
 const Features = () => {
@@ -40,7 +41,7 @@ const Features = () => {
     console.log({ featureId });
     if (!purchaseCart && !productFeatures.includes(featureId)) {
       return (
-        <button
+        <Button
           style={{
             cursor: "pointer",
           }}
@@ -82,12 +83,12 @@ const Features = () => {
           }
         >
           Add this feature to purchase
-        </button>
+        </Button>
       );
     }
 
     if (productFeatures.includes(featureId)) {
-      return <button disabled>Allready bought this feature</button>;
+      return <Button disabled>Allready bought this feature</Button>;
     }
     console.log({
       featureToPurchase,
@@ -95,7 +96,7 @@ const Features = () => {
     });
     if (featureToPurchase.includes(featureId)) {
       return (
-        <button
+        <Button
           // disabled={featureId !== selectedFeature}
           onClick={() => {
             let removeFromIndex = featureToPurchase.indexOf(featureId);
@@ -109,13 +110,13 @@ const Features = () => {
           }}
         >
           Remove this feature from purchase
-        </button>
+        </Button>
       );
     }
 
     if (!productFeatures.includes(featureId)) {
       return (
-        <button
+        <Button
           style={{
             cursor: "pointer",
           }}
@@ -155,7 +156,7 @@ const Features = () => {
           title={!price && "Only avalible with intermediate/enterprise feature"}
         >
           Add this feature to purchase 1
-        </button>
+        </Button>
       );
     }
   }
@@ -172,8 +173,20 @@ const Features = () => {
           <div>
             {product.features.map(
               ({ type, featureId, featureName, basePrice }) => (
-                <div key={featureId} style={{ marginBlock: "30px" }}>
-                  <br />
+                <div
+                  key={featureId}
+                  style={{
+                    marginBlock: "30px",
+                    border: "1px solid red",
+                    height: "250px",
+                    width: "230px",
+                    display: "flex",
+                    flexDirection: "column",
+                    padding: "15px",
+                    justifyContent: "space-evenly",
+                    alignItems: "center",
+                  }}
+                >
                   <span
                     onClick={() =>
                       dispatch(addFeature({ username, featureId }))
@@ -181,15 +194,10 @@ const Features = () => {
                   >
                     Feature Name: {featureName}
                   </span>
-                  <br />
                   <span>Type: {type}</span>
-                  <br />
                   <span>Base Price: $ {basePrice}</span>
-                  <br />
-                  <br />
-                  <br />
+
                   {renderCartPurchaseButton(featureId, basePrice)}
-                  <hr />
                 </div>
               )
             )}

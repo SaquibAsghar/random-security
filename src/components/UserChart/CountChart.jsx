@@ -35,26 +35,30 @@ const CountChart = (props) => {
         backgroundColor: "rgba(255, 99, 132, 0.2)",
         borderColor: "rgba(255, 99, 132, 1)",
         borderWidth: 1,
+        yAxisID: "yAxis",
       },
     ],
   };
 
   const options = {
     scales: {
-      yAxes: [
-        {
-          ticks: {
-            beginAtZero: true,
-            label: `${props.locals["data-loss"]}`, // Add data-loss unit
-          },
+      yAxis: {
+        display: true,
+        ticks: {
+          beginAtZero: true,
+          label: `${props.locals["data-loss"]}`, // Add data-loss unit
         },
-      ],
+      },
     },
   };
 
   const labels = props.data.map((label) => label.country);
   //   return <h1>Hello</h1>;
-  return <Bar data={data} options={options} />;
+  return (
+    <div style={{ width: "550px" }}>
+      <Bar data={data} options={options} />
+    </div>
+  );
 };
 
 export default CountChart;

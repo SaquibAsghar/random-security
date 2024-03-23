@@ -20,8 +20,6 @@ const UserChart = ({ userDisplayChartList, userOrganiztaion }) => {
   console.log(chartWithCount);
   return (
     <>
-      <div>UserChart</div>
-
       {userDisplayChartList.includes("ch_01") && (
         <Chart {...chartWithPercentage[0]} />
       )}

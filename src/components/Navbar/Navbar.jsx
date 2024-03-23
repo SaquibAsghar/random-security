@@ -4,6 +4,11 @@ import { Link, useParams } from "react-router-dom";
 import Home from "../Home/Home";
 import { selectCartList } from "../../features/cart/cartSlice";
 import CartModal from "../Modal/CartModal";
+import {
+  CartIcon,
+  CartIconContainer,
+  ChangeUserNavBar,
+} from "../../common/Common.style";
 
 const Navbar = () => {
   const [isCartModalOpen, setIsCartModalOpen] = useState(false);
@@ -14,57 +19,21 @@ const Navbar = () => {
   console.log(cart);
   return (
     <>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-around",
-          alignItems: "center",
-        }}
-      >
-        <ul style={{ display: "flex" }}>
-          <li
-            style={{
-              listStyle: "none",
-              marginInlineEnd: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            <Link to="/" style={{ textDecoration: "none" }}>
-              Home
-            </Link>
-          </li>
-          <li
-            style={{
-              listStyle: "none",
-              marginInlineEnd: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            <Link to="/dashboard" style={{ textDecoration: "none" }}>
-              Dashboard
-            </Link>
-          </li>
-          <li
-            style={{
-              listStyle: "none",
-              marginInlineEnd: "1rem",
-              cursor: "pointer",
-            }}
-          >
-            <Link to="/login" style={{ textDecoration: "none" }}>
-              Login
-            </Link>
-          </li>
-        </ul>
-        <div>
-          <span style={{ cursor: "pointer" }} onClick={toggleCartModal}>
-            Cart icon
-          </span>
-        </div>
-      </div>
-      <div>
+      <ChangeUserNavBar>
         <Home />
-      </div>
+        <CartIconContainer>
+          <CartIcon onClick={toggleCartModal}>
+            <img
+              src="/images/shopping-cart.svg"
+              alt="shopping cart image"
+              height={35}
+              style={{
+                verticalAlign: "middle",
+              }}
+            />
+          </CartIcon>
+        </CartIconContainer>
+      </ChangeUserNavBar>
       {isCartModalOpen && <CartModal toggleCartModal={toggleCartModal} />}
     </>
   );

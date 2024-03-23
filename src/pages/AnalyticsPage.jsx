@@ -12,10 +12,15 @@ const AnalyticsPage = () => {
   console.log(user);
   return (
     <>
-      <header style={{ fontSize: "xx-large", fontWeight: 700 }}>
+      <header
+        style={{ fontSize: "xx-large", fontWeight: 700, marginBlock: "30px" }}
+      >
         Analytics
       </header>
-      <UserChart userDisplayChartList = {user.charts} userOrganiztaion={user.organization} />
+      <UserChart
+        userDisplayChartList={user.charts}
+        userOrganiztaion={user.organization}
+      />
     </>
   );
 };

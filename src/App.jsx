@@ -6,22 +6,25 @@ import NotFound404 from "./components/NotFound/NotFound404";
 import ProductPage from "./pages/ProductPage";
 import Features from "./components/ProductFeatures/Features";
 import AnalyticsPage from "./pages/AnalyticsPage";
+import { MainWrapper } from "./common/Common.style";
 
 function App() {
   return (
-    <Router>
-      <Navbar />
-      <Routes>
-        {/* <Route exact path="/" element={<HomePage />} /> */}
-        <Route path="/user/:username" element={<UserPage />}>
-          <Route index path="analytics" element={<AnalyticsPage />} />
-          <Route path="products" element={<ProductPage />}>
-            <Route path=":productId" element={<Features />} />
+    <MainWrapper>
+      <Router>
+        <Navbar />
+        <Routes>
+          {/* <Route exact path="/" element={<HomePage />} /> */}
+          <Route path="/user/:username" element={<UserPage />}>
+            <Route index path="analytics" element={<AnalyticsPage />} />
+            <Route path="products" element={<ProductPage />}>
+              <Route path=":productId" element={<Features />} />
+            </Route>
           </Route>
-        </Route>
-        <Route path="*" element={<NotFound404 />} />
-      </Routes>
-    </Router>
+          <Route path="*" element={<NotFound404 />} />
+        </Routes>
+      </Router>
+    </MainWrapper>
   );
 }
 

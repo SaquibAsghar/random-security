@@ -1,13 +1,15 @@
 // import React from 'react';
 import { useParams, Outlet } from "react-router-dom";
 import User from "../components/User/User";
+import { MainContainer } from "../common/Common.style";
 
 const UserPage = () => {
   const { username } = useParams();
   return (
     <>
-      <div>UserPage</div>
-      <User username={username} />
+      <MainContainer>
+        <User username={username} />
+      </MainContainer>
     </>
   );
 };

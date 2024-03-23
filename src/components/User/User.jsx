@@ -4,12 +4,23 @@ import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
 import UserChart from "../UserChart/UserChart";
 import {
-  Link,
+  NavLink,
   useLocation,
   Outlet,
   useNavigate,
   useParams,
 } from "react-router-dom";
+import {
+  Nav,
+  UserAvatarContainer,
+  UserAvatarImage,
+  UserDetailSection,
+  UserDetailWrapper,
+  UserInfoContainer,
+  UserSubInfoRow,
+  UserSubInfoSpan,
+  WelcomeHeading,
+} from "./User.style";
 
 const User = ({ username }) => {
   const allUser = useSelector(selectUsersSelector) || [];
@@ -26,90 +37,104 @@ const User = ({ username }) => {
   });
   return (
     <>
-      <div style={{ marginBlock: "20px" }}>
-        <Link
+      <Nav>
+        <NavLink
           to={`/user/${username}`}
-          style={{
-            textDecoration: "none",
-            color: "#000",
-            marginInlineEnd: "20px",
-          }}
+          className="anchor-link"
+          // className={({isActive}) => {
+          //   isActive ? 'active anchor-link' : 'anchor-link'
+          // }}
         >
           Dashboard
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="products"
-          style={{
-            textDecoration: "none",
-            color: "#000",
-            marginInlineEnd: "20px",
-          }}
+          className="anchor-link"
+          // className={({isActive}) => {
+          //   isActive ? 'active anchor-link' : 'anchor-link'
+          // }}
         >
           Products
-        </Link>
-        <Link
+        </NavLink>
+        <NavLink
           to="analytics"
-          style={{
-            textDecoration: "none",
-            color: "#000",
-            marginInlineEnd: "20px",
-          }}
+          className="anchor-link"
+          // className={({isActive}) => {
+          //   isActive ? 'active anchor-link' : 'anchor-link'
+          // }}
         >
           Analytics
-        </Link>
-      </div>
-      <h1>Welcome {user.displayname} </h1>
-      <div style={{ marginBlock: "24px" }}>
-        <section
-          style={{
-            display: "flex",
-            lineHeight: 4,
-            gap: "50px",
-            border: "1px solid plum",
-          }}
-        >
-          <div>
-            <img
+        </NavLink>
+      </Nav>
+      <WelcomeHeading>Welcome {user.displayname} </WelcomeHeading>
+      <UserDetailWrapper>
+        <UserDetailSection>
+          <UserAvatarContainer>
+            <UserAvatarImage
               src={user.profile}
               alt={`${user.displayname} profile image`}
               width={200}
               height={200}
-              style={{
-                borderRadius: "50%",
-                objectFit: "cover",
-                border: "1px solid red",
-                objectPosition: "top",
-              }}
             />
-          </div>
-          <div>
+          </UserAvatarContainer>
+          <UserInfoContainer>
             <div>
               {/* first detail row start */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                <span>First Name: {user.firstname}</span>
-                <span>Last Name: {user.lastname}</span>
-              </div>
+              <UserSubInfoRow>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong>First Name:</strong>
+                  </span>
+                  <span>{user.firstname}</span>
+                </UserSubInfoSpan>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong className="min-column--width">Last Name:</strong>{" "}
+                  </span>
+                  <span>{user.lastname}</span>
+                </UserSubInfoSpan>
+              </UserSubInfoRow>
               {/* first detail row end */}
 
               {/* second detail row start */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                <span>Username: {user.username}</span>
-                <span>Date of Birth: {user.dob}</span>
-              </div>
+              <UserSubInfoRow>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong>Username:</strong>
+                  </span>
+                  <span>{user.username}</span>
+                </UserSubInfoSpan>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong>Date of Birth:</strong>
+                  </span>
+                  <span>{user.dob}</span>
+                </UserSubInfoSpan>
+              </UserSubInfoRow>
               {/* second detail row end */}
 
               {/* third detail row start */}
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr" }}>
-                <span>Organisation: {user.organization}</span>
-                <span>Email: {user.email}</span>
-              </div>
+              <UserSubInfoRow>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong>Organisation:</strong>{" "}
+                  </span>
+                  <span>{user.organization}</span>
+                </UserSubInfoSpan>
+                <UserSubInfoSpan>
+                  <span className="min-column--width">
+                    <strong>Email:</strong>
+                  </span>
+                  <span>{user.email}</span>
+                </UserSubInfoSpan>
+              </UserSubInfoRow>
               {/* third detail row end */}
             </div>
-          </div>
+          </UserInfoContainer>
           {/* <h2>{user.displayname} Detail</h2> */}
           {/* <div>{JSON.stringify(user)}</div> */}
-        </section>
-      </div>
+        </UserDetailSection>
+      </UserDetailWrapper>
       <div>{/* <UserChart charts={chartsList} /> */}</div>
       <Outlet />
     </>

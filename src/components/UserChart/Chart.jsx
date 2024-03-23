@@ -8,6 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
+import { useEffect, useRef } from "react";
 import { Bar } from "react-chartjs-2";
 
 ChartJS.register(
@@ -109,7 +110,14 @@ const Chart = (props) => {
   };
 
   return (
-    <div style={{ width: "550px" }}>
+    <div
+      style={{
+        width: "600px",
+        marginInline: "auto",
+        height: "350px",
+        position: "relative",
+      }}
+    >
       <Bar options={options} data={data} />
     </div>
   );
