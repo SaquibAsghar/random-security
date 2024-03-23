@@ -1,21 +1,23 @@
 /* eslint-disable react/prop-types */
-import React from "react";
+import { useParams } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { ProductContainer, ProductWrapper } from "./Product.style";
 
 const Product = (props) => {
+  const { productId } = useParams();
   return (
     <>
       {props.list.map((product) => (
-        <div key={product.productId} style={{ marginBlock: "22px" }}>
-          <header style={{ fontSize: "28px", fontWeight: 600}}>
+        <ProductWrapper key={product.productId}>
+          <ProductContainer>
             <Link
               to={product.productId}
-              style={{ textDecoration: "none", color: "#000" }}
+              className={productId === product.productId && "product-link"}
             >
               {product.productName}
             </Link>
-          </header>
-        </div>
+          </ProductContainer>
+        </ProductWrapper>
       ))}
     </>
   );

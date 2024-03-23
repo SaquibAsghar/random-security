@@ -3,6 +3,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import { Link } from "react-router-dom";
 import Product from "../Product/Product";
+import { ProductsContainer, ProductWrapper } from "./Product.style";
 
 const ProductList = (props) => {
   return (
@@ -10,19 +11,12 @@ const ProductList = (props) => {
       <div>
         <h2 style={{ fontSize: "xx-large" }}>Our Products</h2>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "space-between",
-          height: "450px",
-          border: "1px solid plum",
-        }}
-      >
-        <div>
+      <ProductsContainer className="mTop-3">
+        <ProductWrapper>
           <Product {...props} />
-        </div>
+        </ProductWrapper>
         <Outlet />
-      </div>
+      </ProductsContainer>
     </>
   );
 };

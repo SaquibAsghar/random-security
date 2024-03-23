@@ -10,7 +10,16 @@ import {
   addToPurchase,
   removeFromPurchase,
 } from "../../features/cart/cartSlice";
-import { Button } from "./Feature.style";
+import {
+  Button,
+  FeatureCard,
+  FeatureName,
+  FeaturePlan,
+  FeaturePrice,
+  FeaturesCardsContainer,
+  FeaturesHeading,
+  FeaturesWrapper,
+} from "./Feature.style";
 
 let featureToPurchase = [];
 const Features = () => {
@@ -82,13 +91,13 @@ const Features = () => {
             !price && "Only available with intermediate/enterprise feature"
           }
         >
-          Add this feature to purchase
+          Add
         </Button>
       );
     }
 
     if (productFeatures.includes(featureId)) {
-      return <Button disabled>Allready bought this feature</Button>;
+      return <Button disabled>Purchased</Button>;
     }
     console.log({
       featureToPurchase,
@@ -109,7 +118,7 @@ const Features = () => {
             dispatch(removeFromPurchase({ username, featureId }));
           }}
         >
-          Remove this feature from purchase
+          Remove
         </Button>
       );
     }
@@ -155,7 +164,7 @@ const Features = () => {
           }}
           title={!price && "Only avalible with intermediate/enterprise feature"}
         >
-          Add this feature to purchase 1
+          Add 1
         </Button>
       );
     }
@@ -167,43 +176,24 @@ const Features = () => {
 
   return (
     <>
-      <div style={{ overflowY: "scroll" }}>
-        <h3>{product.productName} features</h3>
+      <FeaturesWrapper>
+        <FeaturesHeading>{product.productName} features</FeaturesHeading>
         <div>
-          <div>
+          <FeaturesCardsContainer>
             {product.features.map(
               ({ type, featureId, featureName, basePrice }) => (
-                <div
-                  key={featureId}
-                  style={{
-                    marginBlock: "30px",
-                    border: "1px solid red",
-                    height: "250px",
-                    width: "230px",
-                    display: "flex",
-                    flexDirection: "column",
-                    padding: "15px",
-                    justifyContent: "space-evenly",
-                    alignItems: "center",
-                  }}
-                >
-                  <span
-                    onClick={() =>
-                      dispatch(addFeature({ username, featureId }))
-                    }
-                  >
-                    Feature Name: {featureName}
-                  </span>
-                  <span>Type: {type}</span>
-                  <span>Base Price: $ {basePrice}</span>
+                <FeatureCard key={featureId}>
+                  <FeatureName>{featureName}</FeatureName>
+                  <FeaturePlan>Plan: {type}</FeaturePlan>
+                  <FeaturePrice>Price: $ {basePrice}</FeaturePrice>
 
                   {renderCartPurchaseButton(featureId, basePrice)}
-                </div>
+                </FeatureCard>
               )
             )}
-          </div>
+          </FeaturesCardsContainer>
         </div>
-      </div>
+      </FeaturesWrapper>
     </>
   );
 };
