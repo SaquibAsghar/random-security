@@ -48,6 +48,7 @@ const Features = () => {
   }
   function renderCartPurchaseButton(featureId, price) {
     console.log({ featureId });
+    if (!price) return;
     if (!purchaseCart && !productFeatures.includes(featureId)) {
       return (
         <Button
@@ -186,7 +187,6 @@ const Features = () => {
                   <FeatureName>{featureName}</FeatureName>
                   <FeaturePlan>Plan: {type}</FeaturePlan>
                   <FeaturePrice>Price: $ {basePrice}</FeaturePrice>
-
                   {renderCartPurchaseButton(featureId, basePrice)}
                 </FeatureCard>
               )
