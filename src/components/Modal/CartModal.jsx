@@ -7,6 +7,7 @@ import {
   completePurchase,
   removeFromPurchase,
   resetToInitial,
+  selectGetLastRemovedFeature,
 } from "../../features/cart/cartSlice";
 import { addBulkFeatureFromCart } from "../../features/users/usersSlice";
 import {
@@ -52,10 +53,9 @@ const CartModal = (props) => {
   let cartList = useSelector(
     (state) => state.cart.cartItems[currentUser] || {}
   );
+
   console.log(cartList);
-  const productList = useSelector((state) =>
-    state.products.map((product) => product.productId)
-  );
+
   function calcTotalProductFeatures() {
     let featureList = [];
     for (let key of Object.keys(cartList)) {
@@ -104,7 +104,7 @@ const CartModal = (props) => {
             {featureList.featureToPurchase.toString()}
           </PurchaseItemFeaturesList>
           <PurchaseItemPrice>{featureList.price}</PurchaseItemPrice>
-          <PurchaseItemRemoveIcon
+          {/* <PurchaseItemRemoveIcon
             onClick={() =>
               dispatch(
                 removeFromPurchase({
@@ -115,7 +115,7 @@ const CartModal = (props) => {
             }
           >
             &times;
-          </PurchaseItemRemoveIcon>
+          </PurchaseItemRemoveIcon> */}
         </PurchasedItemRow>
       );
     });
@@ -139,14 +139,13 @@ const CartModal = (props) => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "1fr 200px 1fr 1fr",
+                  gridTemplateColumns: "0.6fr 2fr 1fr",
                   gap: "20px",
                 }}
               >
                 {["Product", "Feature", "Price"].map((label) => {
-                  return <div key={label}>{label}</div>;
+                  return <div key={label} style={{textAlign: `${label=== 'Price' && 'end'}`}}>{label}</div>;
                 })}
-                <div></div>
               </div>
             </ToPurchaseListContainer>
           )}
@@ -221,7 +220,7 @@ const CartModal = (props) => {
               </PriceDetailContainer>
               {/* Button */}
               <div style={{ display: "flex", justifyContent: "end" }}>
-                <ButtonWrapper>
+                {/* <ButtonWrapper>
                   <Button
                     style={{ cursor: "pointer" }}
                     onClick={() =>
@@ -230,10 +229,8 @@ const CartModal = (props) => {
                   >
                     Clear Purchase
                   </Button>
-                </ButtonWrapper>
-                <ButtonWrapper
-                  className="mStart-3 "
-                >
+                </ButtonWrapper> */}
+                <ButtonWrapper className="mStart-3 ">
                   <PurchaseNow
                     style={{ cursor: "pointer" }}
                     onClick={() => processCheckout()}

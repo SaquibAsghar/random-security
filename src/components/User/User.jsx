@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
 import UserChart from "../UserChart/UserChart";
 import {
-  NavLink,
+  Link,
   useLocation,
   Outlet,
   useNavigate,
@@ -38,33 +38,15 @@ const User = ({ username }) => {
   return (
     <>
       <Nav>
-        <NavLink
-          to={`/user/${username}`}
-          className="anchor-link"
-          // className={({isActive}) => {
-          //   isActive ? 'active anchor-link' : 'anchor-link'
-          // }}
-        >
+        <Link to={`/user/${username}`} className="anchor-link">
           Dashboard
-        </NavLink>
-        <NavLink
-          to="products/B001"
-          className="anchor-link"
-          // className={({isActive}) => {
-          //   isActive ? 'active anchor-link' : 'anchor-link'
-          // }}
-        >
+        </Link>
+        <Link to="products/B001" className="anchor-link">
           Products
-        </NavLink>
-        <NavLink
-          to="analytics"
-          className="anchor-link"
-          // className={({isActive}) => {
-          //   isActive ? 'active anchor-link' : 'anchor-link'
-          // }}
-        >
+        </Link>
+        <Link to="analytics" className="anchor-link">
           Analytics
-        </NavLink>
+        </Link>
       </Nav>
       <WelcomeHeading>Welcome {user.displayname} </WelcomeHeading>
       <UserDetailWrapper>

@@ -3,21 +3,18 @@ import styled from "styled-components";
 export const Nav = styled.nav`
   margin-block: 20px 30px;
   position: sticky;
-    top: 70px;
-    bottom: 20px;
-    background-color: #fff;
-    height: 50px;
-    padding-block-start: 10px;
+  top: 70px;
+  bottom: 20px;
+  background-color: #fff;
+  height: 50px;
+  padding-block-start: 10px;
+  z-index: 10;
   & > .anchor-link {
     text-decoration: none;
     color: #000;
     margin-inline-end: 20px;
     font-size: 18px;
     font-weight: 600;
-
-    &.active {
-      color: red;
-    }
   }
 `;
 

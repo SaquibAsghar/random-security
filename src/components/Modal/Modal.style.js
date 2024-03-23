@@ -7,6 +7,7 @@ export const Modal = styled.div`
   align-items: center;
   background-color: #5f575791;
   inset: 0;
+  z-index: 1;
 `;
 
 export const Overlay = styled.div`
@@ -50,20 +51,20 @@ export const ToPurchaseListContainer = styled.section`
 
 export const PurchasedItemRow = styled.section`
   display: grid;
-  grid-template-columns: 1fr 200px 1fr 1fr;
+  grid-template-columns: 0.6fr 2fr 1fr;
   grid-template-rows: 30px;
   gap: 20px;
   margin-block: 10px;
 `;
 
 export const PurchaseItemProductName = styled.span``;
-export const PurchaseItemFeaturesList = styled.span`
-  width: 200px;
-`;
+export const PurchaseItemFeaturesList = styled.span``;
 export const PurchaseItemPrice = styled.span`
   text-align: end;
 `;
-export const PurchaseItemRemoveIcon = styled(PurchaseItemPrice)``;
+export const PurchaseItemRemoveIcon = styled(PurchaseItemPrice)`
+  /* display: none; */
+`;
 
 export const PriceDetailContainer = styled.section`
   margin-block: 20px;

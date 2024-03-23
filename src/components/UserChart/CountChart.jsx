@@ -55,7 +55,7 @@ const CountChart = (props) => {
   const labels = props.data.map((label) => label.country);
   //   return <h1>Hello</h1>;
   return (
-    <div style={{ width: "550px" }}>
+    <div style={{ width: "550px", marginInline: "auto" }}>
       <Bar data={data} options={options} />
     </div>
   );

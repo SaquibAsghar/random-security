@@ -14,14 +14,13 @@ export const ChangeUserNavBar = styled.div`
   height: 70px;
   background-color: plum;
   position: sticky;
-    top: 0;
+  top: 0;
+  z-index: 11;
 
   & > div {
     margin-inline-end: 50px;
     font-size: 18px;
   }
-
-  
 `;
 
 export const CartIconContainer = styled.div``;
