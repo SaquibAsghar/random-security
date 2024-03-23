@@ -4,6 +4,7 @@ export const MainWrapper = styled.div`
   width: 950px;
   margin-inline: auto;
   padding: 20px;
+  padding-block-start: 0;
 `;
 
 export const ChangeUserNavBar = styled.div`
@@ -30,5 +31,19 @@ export const CartIcon = styled.span`
 `;
 
 export const MainContainer = styled.main`
-    padding: 40px;
+  padding: 40px;
+`;
+
+export const PageNotFoundContainer = styled.main`
+  height: 60vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ButtonWrapper = styled.div`
+  &.mTop-3 {
+    margin-top: 30px;
+  }
 `;

@@ -1,4 +1,9 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import HomePage from "./pages/HomePage";
 import UserPage from "./pages/UserPage";
@@ -7,6 +12,8 @@ import ProductPage from "./pages/ProductPage";
 import Features from "./components/ProductFeatures/Features";
 import AnalyticsPage from "./pages/AnalyticsPage";
 import { MainWrapper } from "./common/Common.style";
+import { useCurrentUserContext } from "./app/context/currentUser";
+import { useEffect } from "react";
 
 function App() {
   return (
@@ -14,7 +21,7 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          {/* <Route exact path="/" element={<HomePage />} /> */}
+          <Route exact path="/" element={<Redirect />} />
           <Route path="/user/:username" element={<UserPage />}>
             <Route index path="analytics" element={<AnalyticsPage />} />
             <Route path="products" element={<ProductPage />}>
@@ -26,6 +33,14 @@ function App() {
       </Router>
     </MainWrapper>
   );
+}
+
+function Redirect() {
+  const navigate = useNavigate();
+  useEffect(() => {
+    navigate(`/user/rtripati`); // redirect to default user page
+  }, [navigate]);
+  return <></>;
 }
 
 export default App;

@@ -1,10 +1,25 @@
-// import React from 'react';
-import { useParams, Outlet } from "react-router-dom";
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 import User from "../components/User/User";
 import { MainContainer } from "../common/Common.style";
+import { useCurrentUserContext } from "../app/context/currentUser";
+import { selectGetOnlyUsername } from "../features/users/usersSlice";
 
 const UserPage = () => {
   const { username } = useParams();
+  const navigate = useNavigate();
+  const usersList = useSelector(selectGetOnlyUsername);
+
+  const { currentUser } = useCurrentUserContext();
+  console.log({ username, usersList });
+  console.log(usersList.includes(currentUser));
+
+  if (!usersList.includes(currentUser)) {
+    navigate("/404-not-found");
+    return;
+  }
+
   return (
     <>
       <MainContainer>

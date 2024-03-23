@@ -23,11 +23,13 @@ const usersSlice = createSlice({
     addBulkFeatureFromCart: function (state, action) {
       const { username, purchasedItems } = action.payload;
       console.log(purchasedItems);
-      state.forEach(user => {
-        if(user.username === username) {
-          user.productFeatures = [...new Set([...user.productFeatures, ...purchasedItems])]
+      state.forEach((user) => {
+        if (user.username === username) {
+          user.productFeatures = [
+            ...new Set([...user.productFeatures, ...purchasedItems]),
+          ];
         }
-      })
+      });
 
       state;
     },
@@ -35,6 +37,9 @@ const usersSlice = createSlice({
 });
 
 export const selectUsersSelector = (state) => state.users;
+
+export const selectGetOnlyUsername = (state) =>
+  state.users.map((user) => user.username);
 
 export const { addFeature, addBulkFeatureFromCart } = usersSlice.actions;
 
