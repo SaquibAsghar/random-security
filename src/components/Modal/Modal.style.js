@@ -7,7 +7,7 @@ export const Modal = styled.div`
   align-items: center;
   background-color: #5f575791;
   inset: 0;
-  z-index: 1;
+  z-index: 11;
 `;
 
 export const Overlay = styled.div`
