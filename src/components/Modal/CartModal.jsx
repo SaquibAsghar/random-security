@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import React, { useState } from "react";
+import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, useLocation } from "react-router-dom";
 import { useCurrentUserContext } from "../../app/context/currentUser";
@@ -16,7 +16,19 @@ import {
   OverlayCross,
   OverlayHeader,
   OverlayTitle,
+  PriceDetailContainer,
+  ProductPricingCalculation,
+  ProductPricingDescription,
+  ProductPricingSection,
+  PurchasedItemRow,
+  PurchaseItemFeaturesList,
+  PurchaseItemPrice,
+  PurchaseItemProductName,
+  PurchaseItemRemoveIcon,
+  ToPurchaseListContainer,
 } from "./Modal.style";
+import { Button, PurchaseNow } from "../ProductFeatures/Feature.style";
+import { ButtonWrapper } from "../../common/Common.style";
 
 const uniqueProduct = [];
 const discountOnProducts = {
@@ -84,32 +96,27 @@ const CartModal = (props) => {
       }
       cartPrice += featureList.price;
       return (
-        <div
-          key={productId}
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <>
-            <span>{productId.substring(0, 4)}</span>
-            <span>{featureList.featureToPurchase.toString()}</span>
-            <span>{featureList.price}</span>
-            <span
-              style={{ cursor: "pointer" }}
-              onClick={() =>
-                dispatch(
-                  removeFromPurchase({
-                    username: currentUser,
-                    featureId: productId,
-                  })
-                )
-              }
-            >
-              &times;
-            </span>
-          </>
-        </div>
+        <PurchasedItemRow key={productId}>
+          <PurchaseItemProductName>
+            {productId.substring(0, 4)}
+          </PurchaseItemProductName>
+          <PurchaseItemFeaturesList>
+            {featureList.featureToPurchase.toString()}
+          </PurchaseItemFeaturesList>
+          <PurchaseItemPrice>{featureList.price}</PurchaseItemPrice>
+          <PurchaseItemRemoveIcon
+            onClick={() =>
+              dispatch(
+                removeFromPurchase({
+                  username: currentUser,
+                  featureId: productId,
+                })
+              )
+            }
+          >
+            &times;
+          </PurchaseItemRemoveIcon>
+        </PurchasedItemRow>
       );
     });
   }
@@ -123,58 +130,117 @@ const CartModal = (props) => {
             <OverlayCross onClick={props.toggleCartModal}>&times;</OverlayCross>
           </OverlayHeader>
           {!Object.keys(cartList).length && (
-              <EmptyCartMessage>You don&apos;t have any product to purchase</EmptyCartMessage>
+            <EmptyCartMessage>
+              You don&apos;t have any product to purchase
+            </EmptyCartMessage>
+          )}
+          {!!Object.keys(cartList).length && (
+            <ToPurchaseListContainer>
+              <div
+                style={{
+                  display: "grid",
+                  gridTemplateColumns: "1fr 200px 1fr 1fr",
+                  gap: "20px",
+                }}
+              >
+                {["Product", "Feature", "Price"].map((label) => {
+                  return <div key={label}>{label}</div>;
+                })}
+                <div></div>
+              </div>
+            </ToPurchaseListContainer>
           )}
           {cartList && !!Object.keys(cartList).length && (
             <>
-              <div style={{ marginBlock: "24px" }}>{renderList(cartList)}</div>
+              <ToPurchaseListContainer>
+                {renderList(cartList)}
+              </ToPurchaseListContainer>
 
-              <div>
-                <p>Total Product qunatity: {uniqueProduct.length}</p>
-                <p>Original Price: ${cartPrice}</p>
+              <PriceDetailContainer>
+                <ProductPricingSection>
+                  <ProductPricingDescription>
+                    Total Product quantity:
+                  </ProductPricingDescription>
+                  <ProductPricingCalculation>
+                    {uniqueProduct.length}
+                  </ProductPricingCalculation>
+                </ProductPricingSection>
+                <ProductPricingSection>
+                  <ProductPricingDescription>
+                    Original Price:{" "}
+                  </ProductPricingDescription>
+                  <ProductPricingCalculation>
+                    ${cartPrice}
+                  </ProductPricingCalculation>
+                </ProductPricingSection>
                 {uniqueProduct.length > 1 ? (
                   <>
-                    <p>
-                      Discount Rate: {discountOnProducts[uniqueProduct.length]}%
-                    </p>
-                    <p>
-                      Discount Amount: $
-                      {(cartPrice * discountOnProducts[uniqueProduct.length]) /
-                        100}
-                    </p>
-                    <p>
-                      Final Price after discount: $
-                      {calculateFinalPrice(
-                        discountOnProducts[uniqueProduct.length]
-                      )}
-                    </p>
+                    <ProductPricingSection>
+                      <ProductPricingDescription>
+                        Discount Rate:
+                      </ProductPricingDescription>
+                      <ProductPricingCalculation>
+                        {discountOnProducts[uniqueProduct.length]}%
+                      </ProductPricingCalculation>
+                    </ProductPricingSection>
+                    <ProductPricingSection>
+                      <ProductPricingDescription>
+                        Discount Amount:
+                      </ProductPricingDescription>
+                      <ProductPricingCalculation>
+                        ${" "}
+                        {(cartPrice *
+                          discountOnProducts[uniqueProduct.length]) /
+                          100}
+                      </ProductPricingCalculation>
+                    </ProductPricingSection>
+                    <ProductPricingSection>
+                      <span>Final Price after discount:</span>
+                      <ProductPricingCalculation>
+                        {" "}
+                        $
+                        {calculateFinalPrice(
+                          discountOnProducts[uniqueProduct.length]
+                        )}
+                      </ProductPricingCalculation>
+                    </ProductPricingSection>
                   </>
                 ) : (
-                  <p>Final Price after discount {calculateFinalPrice()}</p>
+                  <>
+                    <ProductPricingSection>
+                      <ProductPricingDescription>
+                        Final Price:
+                      </ProductPricingDescription>
+                      <ProductPricingCalculation>
+                        {" "}
+                        ${calculateFinalPrice()}
+                      </ProductPricingCalculation>
+                    </ProductPricingSection>
+                  </>
                 )}
-              </div>
+              </PriceDetailContainer>
               {/* Button */}
               <div style={{ display: "flex", justifyContent: "end" }}>
-                <div style={{}}>
-                  <button
-                    type="button"
+                <ButtonWrapper>
+                  <Button
                     style={{ cursor: "pointer" }}
                     onClick={() =>
                       dispatch(resetToInitial({ username: currentUser }))
                     }
                   >
                     Clear Purchase
-                  </button>
-                </div>
-                <div style={{}}>
-                  <button
-                    type="button"
+                  </Button>
+                </ButtonWrapper>
+                <ButtonWrapper
+                  className="mStart-3 "
+                >
+                  <PurchaseNow
                     style={{ cursor: "pointer" }}
                     onClick={() => processCheckout()}
                   >
-                    Purchase Now
-                  </button>
-                </div>
+                    Buy Now
+                  </PurchaseNow>
+                </ButtonWrapper>
               </div>
               {isProcessing && <span>Processing your order please wait</span>}
             </>

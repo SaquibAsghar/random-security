@@ -62,7 +62,7 @@ export const Button = styled.button`
   border-radius: 999px;
   border: 0.5px solid #6e3aff;
   transition: background-color 200ms linear;
-  background-color: antiquewhite;
+  background-color: #f3f4f6;
   color: #6e3aff;
   font-size: 18px;
   &:hover {
@@ -70,4 +70,9 @@ export const Button = styled.button`
     background-color: #6e3aff;
     color: #fff;
   }
+`;
+
+export const PurchaseNow = styled(Button)`
+  background-color: #6e3aff;
+  color: #fff;
 `;

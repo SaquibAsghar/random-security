@@ -14,6 +14,15 @@ export const Overlay = styled.div`
   width: 600px;
   height: 400px;
   padding: 24px;
+  border-radius: 5px;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    width: 9px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: #6e3aff;
+    border-radius: 99px;
+  }
 `;
 
 export const OverlayHeader = styled.header`
@@ -32,5 +41,41 @@ export const OverlayCross = styled.span`
 `;
 
 export const EmptyCartMessage = styled.p`
-    text-align: center;
+  text-align: center;
+`;
+
+export const ToPurchaseListContainer = styled.section`
+  margin-block: 24px;
+`;
+
+export const PurchasedItemRow = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 200px 1fr 1fr;
+  grid-template-rows: 30px;
+  gap: 20px;
+  margin-block: 10px;
+`;
+
+export const PurchaseItemProductName = styled.span``;
+export const PurchaseItemFeaturesList = styled.span`
+  width: 200px;
+`;
+export const PurchaseItemPrice = styled.span`
+  text-align: end;
+`;
+export const PurchaseItemRemoveIcon = styled(PurchaseItemPrice)``;
+
+export const PriceDetailContainer = styled.section`
+  margin-block: 20px;
+`;
+
+export const ProductPricingSection = styled.section`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  margin-block: 12px;
+`;
+export const ProductPricingDescription = styled.span``;
+
+export const ProductPricingCalculation = styled.span`
+  text-align: end;
 `;

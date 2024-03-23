@@ -46,4 +46,7 @@ export const ButtonWrapper = styled.div`
   &.mTop-3 {
     margin-top: 30px;
   }
+  &.mStart-3 {
+    margin-inline-start: 10px;
+  }
 `;

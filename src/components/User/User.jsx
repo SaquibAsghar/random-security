@@ -48,7 +48,7 @@ const User = ({ username }) => {
           Dashboard
         </NavLink>
         <NavLink
-          to="products"
+          to="products/B001"
           className="anchor-link"
           // className={({isActive}) => {
           //   isActive ? 'active anchor-link' : 'anchor-link'
