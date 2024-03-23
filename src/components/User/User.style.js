@@ -2,7 +2,12 @@ import styled from "styled-components";
 
 export const Nav = styled.nav`
   margin-block: 20px 30px;
-
+  position: sticky;
+    top: 70px;
+    bottom: 20px;
+    background-color: #fff;
+    height: 50px;
+    padding-block-start: 10px;
   & > .anchor-link {
     text-decoration: none;
     color: #000;

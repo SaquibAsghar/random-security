@@ -13,15 +13,15 @@ export const ChangeUserNavBar = styled.div`
   align-items: center;
   height: 70px;
   background-color: plum;
+  position: sticky;
+    top: 0;
 
   & > div {
     margin-inline-end: 50px;
     font-size: 18px;
   }
 
-  &:first-child {
-    margin-inline-end: 100px;
-  }
+  
 `;
 
 export const CartIconContainer = styled.div``;
