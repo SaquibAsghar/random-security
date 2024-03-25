@@ -89,8 +89,34 @@ const CartModal = (props) => {
     return cartPrice;
   }
 
+  let removeDuplicateFeature = [];
+
+  const printFeatureRow = (featureArr) => {
+    featureArr.forEach((element) => {
+      if (!removeDuplicateFeature.length) {
+        removeDuplicateFeature.push(element);
+        return;
+      }
+
+      console.log(removeDuplicateFeature);
+
+      removeDuplicateFeature = removeDuplicateFeature.filter((ele) => {
+        if (ele !== element) return ele;
+      });
+    });
+    console.log(removeDuplicateFeature);
+    return removeDuplicateFeature.toString();
+  };
+
   function renderList(list) {
     const purchaseList = Object.entries(list);
+    console.log(purchaseList);
+    const featuresList = purchaseList.map(([_, featureList]) => {
+      return featureList.featureToPurchase;
+    });
+
+    console.log(featuresList);
+
     return purchaseList.map(([productId, featureList]) => {
       if (!uniqueProduct.includes(productId.substring(0, 4))) {
         uniqueProduct.push(productId.substring(0, 4));
@@ -103,6 +129,7 @@ const CartModal = (props) => {
           </PurchaseItemProductName>
           <PurchaseItemFeaturesList>
             {featureList.featureToPurchase.toString()}
+            {/* {printFeatureRow(featureList.featureToPurchase)} */}
           </PurchaseItemFeaturesList>
           <PurchaseItemPrice>{featureList.price}</PurchaseItemPrice>
           {/* <PurchaseItemRemoveIcon

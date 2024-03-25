@@ -122,9 +122,12 @@ const Features = () => {
     }
 
     if (
-      !removedFeatureList.length &&
-      !removedFeatureList.includes(featureId) &&
-      featureToPurchase1[productId]?.includes(featureId)
+      (!removedFeatureList.length &&
+        !removedFeatureList.includes(featureId) &&
+        featureToPurchase1[productId]?.includes(featureId)) ||
+      (removedFeatureList.length &&
+        !removedFeatureList.includes(featureId) &&
+        featureToPurchase1[productId]?.includes(featureId))
     ) {
       return (
         <Button
