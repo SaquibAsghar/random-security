@@ -45,6 +45,12 @@ const Features = () => {
     (state) => state.cart.cartItems[username] || {}
   );
 
+  console.log(purchaseCart, new Date().toGMTString());
+
+  const removedFeatureList = useSelector(
+    (state) => state.cart.lastRemovedFeatureFromCart || []
+  );
+
   let presentProductIdFeatureInCart = useSelector(
     (state) => state.cart[productId]
   );
@@ -67,6 +73,12 @@ const Features = () => {
   function renderCartPurchaseButton(featureId, price) {
     console.log({ featureId });
 
+    console.log(
+      "INSIDE THE RENDER CART PURCHASE BUTTON",
+      purchaseCart,
+      new Date().toGMTString()
+    );
+
     // If purchase amount is 0
     if (!price) return;
 
@@ -81,7 +93,7 @@ const Features = () => {
       featureToPurchase1,
     });
     // Show Remove button if feature is present inside the cart(featureToPurchase)
-    if (featureToPurchase.includes(featureId)) {
+    if (false && featureToPurchase.includes(featureId)) {
       return (
         <Button
           onClick={() => {
@@ -109,7 +121,11 @@ const Features = () => {
       );
     }
 
-    if (featureToPurchase1[productId]?.includes(featureId)) {
+    if (
+      !removedFeatureList.length &&
+      !removedFeatureList.includes(featureId) &&
+      featureToPurchase1[productId]?.includes(featureId)
+    ) {
       return (
         <Button
           onClick={() => {
@@ -128,7 +144,7 @@ const Features = () => {
               console.log(featureToPurchase);
               console.log({ featureToPurchase1 });
               // setSelectedFeature("");
-              dispatch(removeFromPurchase({ username, featureId }));
+              dispatch(removeFromPurchase({ username, featureId, productId }));
             }
           }}
         >
@@ -198,7 +214,8 @@ const Features = () => {
 
             console.log(purchaseCart);
 
-            if (presentProductIdFeatureInCart) {
+            // This will remove the duplication from the cart list, when cart modal is opened
+            if (false && presentProductIdFeatureInCart) {
               console.log(presentProductIdFeatureInCart);
 
               featureToPurchase1[productId] = featureToPurchase1[

@@ -34,7 +34,7 @@ const cartSlice = createSlice({
         featureToPurchase,
       } = cart;
       console.log(cart);
-
+      state.lastRemovedFeatureFromCart = [];
       if (!state.cartItems[username]) {
         state.cartItems[username] = {
           [featuresId]: {
@@ -65,14 +65,25 @@ const cartSlice = createSlice({
     removeFromPurchase: (state, action) => {
       const { username, featureId, productId } = action.payload;
       console.log(featureId);
-      state.lastRemovedFeatureFromCart = featureId;
+      state.lastRemovedFeatureFromCart =
+        state.cartItems[username][featureId].featureToPurchase;
       if (!state.cartItems[username][featureId]) {
         return state;
       }
-      state[productId] = state[productId].filter(
-        (feature) => feature !== featureId
-      );
-      delete state.cartItems[username][featureId];
+
+      const removedFeatureListFromUserCart = state.cartItems[username][featureId].featureToPurchase
+
+      const uniqueProductFeatureIdPresentInCart = state[productId]
+
+      state[productId] = removedFeatureListFromUserCart.filter(ele => {
+        if(!uniqueProductFeatureIdPresentInCart.includes(ele)) {
+          return ele
+        }
+      });
+      const { [featureId]: removedFeatureId, ...newObject } =
+        state.cartItems[username];
+      state.cartItems[username] = newObject;
+      // delete state.cartItems[username][featureId];
       // state.cartItems[username] = state.cartItems[username].filter(
       //   (purchaseItem) => purchaseItem !== cart
       // );
