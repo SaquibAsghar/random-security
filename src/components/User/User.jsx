@@ -1,14 +1,9 @@
 /* eslint-disable react/prop-types */
-// import React from 'react'
 import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
-import UserChart from "../UserChart/UserChart";
 import {
   Link,
-  useLocation,
   Outlet,
-  useNavigate,
-  useParams,
 } from "react-router-dom";
 import {
   Nav,
@@ -24,17 +19,10 @@ import {
 
 const User = ({ username }) => {
   const allUser = useSelector(selectUsersSelector) || [];
-  const navigate = useNavigate();
-  console.log(allUser);
   const user = allUser.find(
     (user) => user.username.toLowerCase() === username.toLowerCase()
   );
-  console.log(user);
-  const chartsList = user.charts;
-  let { pathname } = useLocation();
-  console.log({
-    pathname,
-  });
+
   return (
     <>
       <Nav>
@@ -113,11 +101,9 @@ const User = ({ username }) => {
               {/* third detail row end */}
             </div>
           </UserInfoContainer>
-          {/* <h2>{user.displayname} Detail</h2> */}
-          {/* <div>{JSON.stringify(user)}</div> */}
         </UserDetailSection>
       </UserDetailWrapper>
-      <div>{/* <UserChart charts={chartsList} /> */}</div>
+      <div></div>
       <Outlet />
     </>
   );

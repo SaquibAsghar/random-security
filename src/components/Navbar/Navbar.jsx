@@ -16,7 +16,6 @@ const Navbar = () => {
     setIsCartModalOpen((prevState) => !prevState);
   };
   const cart = useSelector((state) => state.cart.cartItems);
-  console.log(cart);
   return (
     <>
       <ChangeUserNavBar>

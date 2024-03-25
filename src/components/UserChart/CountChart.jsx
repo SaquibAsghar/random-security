@@ -8,7 +8,7 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { Bar, Pie, Line, Doughnut } from "react-chartjs-2";
+import { Bar} from "react-chartjs-2";
 
 ChartJS.register(
   CategoryScale,
@@ -20,11 +20,9 @@ ChartJS.register(
 );
 
 const CountChart = (props) => {
-  console.log(props);
   const userOrganizationData = props.data.find(
     (item) => item.company === props.userOrganiztaion
   );
-  console.log(userOrganizationData);
 
   const data = {
     labels: ["ABC"], // Extract company names from data
@@ -52,8 +50,8 @@ const CountChart = (props) => {
     },
   };
 
+  // eslint-disable-next-line no-unused-vars
   const labels = props.data.map((label) => label.country);
-  //   return <h1>Hello</h1>;
   return (
     <div style={{ width: "550px", marginInline: "auto" }}>
       <Bar data={data} options={options} />

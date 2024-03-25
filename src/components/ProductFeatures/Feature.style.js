@@ -78,6 +78,9 @@ export const Button = styled.button`
     background-color: #6e3aff;
     color: #fff;
   }
+  &.purchased{
+    cursor: not-allowed;
+  }
 `;
 
 export const PurchaseNow = styled(Button)`

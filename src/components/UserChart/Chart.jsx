@@ -34,7 +34,6 @@ export const options1 = {
       max: 100,
       ticks: {
         callback: function (value, index, ticks) {
-          console.log(index, ticks);
           return value + " % ";
         },
       },
@@ -78,7 +77,6 @@ const Chart = (props) => {
         max: 100,
         ticks: {
           callback: function (value, index, ticks) {
-            // console.log(index, ticks);
             if (props.dataType === "percentage") {
               return value + " % ";
             }
@@ -103,7 +101,7 @@ const Chart = (props) => {
       {
         label: "Phising",
         data: phisingData,
-        backgroundColor: "rgba(53, 162, 235, 0.5)",
+        backgroundColor: "rgb(53, 162, 235)",
         yAxisID: "yAxis",
       },
     ],

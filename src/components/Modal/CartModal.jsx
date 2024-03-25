@@ -1,13 +1,10 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
 import { useCurrentUserContext } from "../../app/context/currentUser";
 import {
   completePurchase,
-  removeFromPurchase,
   resetToInitial,
-  selectGetLastRemovedFeature,
 } from "../../features/cart/cartSlice";
 import { addBulkFeatureFromCart } from "../../features/users/usersSlice";
 import {
@@ -26,10 +23,9 @@ import {
   PurchaseItemFeaturesList,
   PurchaseItemPrice,
   PurchaseItemProductName,
-  PurchaseItemRemoveIcon,
   ToPurchaseListContainer,
 } from "./Modal.style";
-import { Button, PurchaseNow } from "../ProductFeatures/Feature.style";
+import { PurchaseNow } from "../ProductFeatures/Feature.style";
 import { ButtonWrapper } from "../../common/Common.style";
 
 const uniqueProduct = [];
@@ -40,22 +36,13 @@ const discountOnProducts = {
   5: 15,
 };
 const CartModal = (props) => {
-  const { productId } = useParams();
-  let location = useLocation();
-  console.log({
-    location,
-  });
-  console.log({ productId });
   let cartPrice = 0;
   const { currentUser } = useCurrentUserContext();
   const [isProcessing, setIsProcessing] = useState(false);
   const dispatch = useDispatch();
-  console.log({ currentUser });
   let cartList = useSelector(
     (state) => state.cart.cartItems[currentUser] || {}
   );
-
-  console.log(cartList);
 
   function calcTotalProductFeatures() {
     let featureList = [];
@@ -64,7 +51,6 @@ const CartModal = (props) => {
         ...new Set([...cartList[key].featureToPurchase, ...featureList]),
       ];
     }
-    console.log(featureList);
     return featureList;
   }
   const processCheckout = () => {
@@ -89,33 +75,11 @@ const CartModal = (props) => {
     return cartPrice;
   }
 
-  let removeDuplicateFeature = [];
-
-  const printFeatureRow = (featureArr) => {
-    featureArr.forEach((element) => {
-      if (!removeDuplicateFeature.length) {
-        removeDuplicateFeature.push(element);
-        return;
-      }
-
-      console.log(removeDuplicateFeature);
-
-      removeDuplicateFeature = removeDuplicateFeature.filter((ele) => {
-        if (ele !== element) return ele;
-      });
-    });
-    console.log(removeDuplicateFeature);
-    return removeDuplicateFeature.toString();
-  };
-
   function renderList(list) {
     const purchaseList = Object.entries(list);
-    console.log(purchaseList);
     const featuresList = purchaseList.map(([_, featureList]) => {
       return featureList.featureToPurchase;
     });
-
-    console.log(featuresList);
 
     return purchaseList.map(([productId, featureList]) => {
       if (!uniqueProduct.includes(productId.substring(0, 4))) {
@@ -129,21 +93,8 @@ const CartModal = (props) => {
           </PurchaseItemProductName>
           <PurchaseItemFeaturesList>
             {featureList.featureToPurchase.toString()}
-            {/* {printFeatureRow(featureList.featureToPurchase)} */}
           </PurchaseItemFeaturesList>
           <PurchaseItemPrice>{featureList.price}</PurchaseItemPrice>
-          {/* <PurchaseItemRemoveIcon
-            onClick={() =>
-              dispatch(
-                removeFromPurchase({
-                  username: currentUser,
-                  featureId: productId,
-                })
-              )
-            }
-          >
-            &times;
-          </PurchaseItemRemoveIcon> */}
         </PurchasedItemRow>
       );
     });

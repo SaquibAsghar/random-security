@@ -1,19 +1,5 @@
+/* eslint-disable no-unused-vars */
 import { createSlice } from "@reduxjs/toolkit";
-
-/*
-  cartItems: {
-    rtripati: ["B001F001", "BOO1F002", "BOO3F003"],
-    username: {
-      product: {
-        featureID: {
-          list: [],
-          pricing: 80,
-        },
-      },
-    },
-  },
-
-*/
 
 const initialState = {
   cartItems: {},
@@ -33,7 +19,6 @@ const cartSlice = createSlice({
         featureId: featuresId,
         featureToPurchase,
       } = cart;
-      console.log(cart);
       state.lastRemovedFeatureFromCart = [];
       if (!state.cartItems[username]) {
         state.cartItems[username] = {
@@ -64,7 +49,6 @@ const cartSlice = createSlice({
     completePurchase: (state) => state,
     removeFromPurchase: (state, action) => {
       const { username, featureId, productId } = action.payload;
-      console.log(featureId);
       state.lastRemovedFeatureFromCart =
         state.cartItems[username][featureId].featureToPurchase;
       if (!state.cartItems[username][featureId]) {

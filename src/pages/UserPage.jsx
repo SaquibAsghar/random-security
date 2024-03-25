@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import User from "../components/User/User";
@@ -12,8 +11,6 @@ const UserPage = () => {
   const usersList = useSelector(selectGetOnlyUsername);
 
   const { currentUser } = useCurrentUserContext();
-  console.log({ username, usersList });
-  console.log(usersList.includes(currentUser));
 
   if (!usersList.includes(currentUser)) {
     navigate("/404-not-found");
