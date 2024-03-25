@@ -18,6 +18,7 @@ import {
   OverlayHeader,
   OverlayTitle,
   PriceDetailContainer,
+  ProcessingText,
   ProductPricingCalculation,
   ProductPricingDescription,
   ProductPricingSection,
@@ -124,132 +125,127 @@ const CartModal = (props) => {
   return (
     <>
       <Modal>
-        <Overlay>
-          <OverlayHeader>
-            <OverlayTitle>Billing</OverlayTitle>
-            <OverlayCross onClick={props.toggleCartModal}>&times;</OverlayCross>
-          </OverlayHeader>
-          {!Object.keys(cartList).length && (
-            <EmptyCartMessage>
-              You don&apos;t have any product to purchase
-            </EmptyCartMessage>
-          )}
-          {!!Object.keys(cartList).length && (
-            <ToPurchaseListContainer>
-              <div
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "0.6fr 313px 1fr",
-                  gap: "20px",
-                }}
-              >
-                {["Product", "Feature", "Price"].map((label) => {
-                  return (
-                    <div
-                      key={label}
-                      style={{ textAlign: `${label === "Price" && "end"}` }}
-                    >
-                      {label}
-                    </div>
-                  );
-                })}
-              </div>
-            </ToPurchaseListContainer>
-          )}
-          {cartList && !!Object.keys(cartList).length && (
-            <>
+        <div style={{ position: "relative" }}>
+          <Overlay>
+            <OverlayHeader>
+              <OverlayTitle>Billing</OverlayTitle>
+              <OverlayCross onClick={props.toggleCartModal}>
+                &times;
+              </OverlayCross>
+            </OverlayHeader>
+            {!Object.keys(cartList).length && (
+              <EmptyCartMessage>
+                You don&apos;t have any product to purchase
+              </EmptyCartMessage>
+            )}
+            {!!Object.keys(cartList).length && (
               <ToPurchaseListContainer>
-                {renderList(cartList)}
+                <div
+                  style={{
+                    display: "grid",
+                    gridTemplateColumns: "0.6fr 313px 1fr",
+                    gap: "20px",
+                  }}
+                >
+                  {["Product", "Feature", "Price"].map((label) => {
+                    return (
+                      <div
+                        key={label}
+                        style={{ textAlign: `${label === "Price" && "end"}` }}
+                      >
+                        {label}
+                      </div>
+                    );
+                  })}
+                </div>
               </ToPurchaseListContainer>
+            )}
+            {cartList && !!Object.keys(cartList).length && (
+              <>
+                <ToPurchaseListContainer>
+                  {renderList(cartList)}
+                </ToPurchaseListContainer>
 
-              <PriceDetailContainer>
-                <ProductPricingSection>
-                  <ProductPricingDescription>
-                    Total Product quantity:
-                  </ProductPricingDescription>
-                  <ProductPricingCalculation>
-                    {uniqueProduct.length}
-                  </ProductPricingCalculation>
-                </ProductPricingSection>
-                <ProductPricingSection>
-                  <ProductPricingDescription>
-                    Original Price:{" "}
-                  </ProductPricingDescription>
-                  <ProductPricingCalculation>
-                    ${cartPrice}
-                  </ProductPricingCalculation>
-                </ProductPricingSection>
-                {uniqueProduct.length > 1 ? (
-                  <>
-                    <ProductPricingSection>
-                      <ProductPricingDescription>
-                        Discount Rate:
-                      </ProductPricingDescription>
-                      <ProductPricingCalculation>
-                        {discountOnProducts[uniqueProduct.length]}%
-                      </ProductPricingCalculation>
-                    </ProductPricingSection>
-                    <ProductPricingSection>
-                      <ProductPricingDescription>
-                        Discount Amount:
-                      </ProductPricingDescription>
-                      <ProductPricingCalculation>
-                        ${" "}
-                        {(cartPrice *
-                          discountOnProducts[uniqueProduct.length]) /
-                          100}
-                      </ProductPricingCalculation>
-                    </ProductPricingSection>
-                    <ProductPricingSection>
-                      <span>Final Price after discount:</span>
-                      <ProductPricingCalculation>
-                        {" "}
-                        $
-                        {calculateFinalPrice(
-                          discountOnProducts[uniqueProduct.length]
-                        )}
-                      </ProductPricingCalculation>
-                    </ProductPricingSection>
-                  </>
-                ) : (
-                  <>
-                    <ProductPricingSection>
-                      <ProductPricingDescription>
-                        Final Price:
-                      </ProductPricingDescription>
-                      <ProductPricingCalculation>
-                        {" "}
-                        ${calculateFinalPrice()}
-                      </ProductPricingCalculation>
-                    </ProductPricingSection>
-                  </>
+                <PriceDetailContainer>
+                  <ProductPricingSection>
+                    <ProductPricingDescription>
+                      Total Product quantity:
+                    </ProductPricingDescription>
+                    <ProductPricingCalculation>
+                      {uniqueProduct.length}
+                    </ProductPricingCalculation>
+                  </ProductPricingSection>
+                  <ProductPricingSection>
+                    <ProductPricingDescription>
+                      Original Price:{" "}
+                    </ProductPricingDescription>
+                    <ProductPricingCalculation>
+                      ${cartPrice}
+                    </ProductPricingCalculation>
+                  </ProductPricingSection>
+                  {uniqueProduct.length > 1 ? (
+                    <>
+                      <ProductPricingSection>
+                        <ProductPricingDescription>
+                          Discount Rate:
+                        </ProductPricingDescription>
+                        <ProductPricingCalculation>
+                          {discountOnProducts[uniqueProduct.length]}%
+                        </ProductPricingCalculation>
+                      </ProductPricingSection>
+                      <ProductPricingSection>
+                        <ProductPricingDescription>
+                          Discount Amount:
+                        </ProductPricingDescription>
+                        <ProductPricingCalculation>
+                          ${" "}
+                          {(cartPrice *
+                            discountOnProducts[uniqueProduct.length]) /
+                            100}
+                        </ProductPricingCalculation>
+                      </ProductPricingSection>
+                      <ProductPricingSection>
+                        <span>Final Price after discount:</span>
+                        <ProductPricingCalculation>
+                          {" "}
+                          $
+                          {calculateFinalPrice(
+                            discountOnProducts[uniqueProduct.length]
+                          )}
+                        </ProductPricingCalculation>
+                      </ProductPricingSection>
+                    </>
+                  ) : (
+                    <>
+                      <ProductPricingSection>
+                        <ProductPricingDescription>
+                          Final Price:
+                        </ProductPricingDescription>
+                        <ProductPricingCalculation>
+                          {" "}
+                          ${calculateFinalPrice()}
+                        </ProductPricingCalculation>
+                      </ProductPricingSection>
+                    </>
+                  )}
+                </PriceDetailContainer>
+                <div style={{ display: "flex", justifyContent: "end" }}>
+                  <ButtonWrapper className="mStart-3 ">
+                    <PurchaseNow
+                      style={{ cursor: "pointer" }}
+                      onClick={() => processCheckout()}
+                    >
+                      Buy Now
+                    </PurchaseNow>
+                  </ButtonWrapper>
+                </div>
+                {isProcessing && (
+                  <ProcessingText>Processing your order.</ProcessingText>
                 )}
-              </PriceDetailContainer>
-              {/* Button */}
-              <div style={{ display: "flex", justifyContent: "end" }}>
-                {/* <ButtonWrapper>
-                  <Button
-                    style={{ cursor: "pointer" }}
-                    onClick={() =>
-                      dispatch(resetToInitial({ username: currentUser }))
-                    }
-                  >
-                    Clear Purchase
-                  </Button>
-                </ButtonWrapper> */}
-                <ButtonWrapper className="mStart-3 ">
-                  <PurchaseNow
-                    style={{ cursor: "pointer" }}
-                    onClick={() => processCheckout()}
-                  >
-                    Buy Now
-                  </PurchaseNow>
-                </ButtonWrapper>
-              </div>
-              {isProcessing && <span>Processing your order please wait</span>}
-            </>
-          )}
-        </Overlay>
+              </>
+            )}
+          </Overlay>
+        </div>
       </Modal>
     </>
   );

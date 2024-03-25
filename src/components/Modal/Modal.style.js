@@ -82,3 +82,34 @@ export const ProductPricingDescription = styled.span``;
 export const ProductPricingCalculation = styled.span`
   text-align: end;
 `;
+
+export const ProcessingText = styled.span`
+  position: absolute;
+  inset: 0;
+  background-color: #a9a9a990;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border-top: 3px solid #fff;
+    border-right: 3px solid transparent;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    margin-inline-start: 16px;
+  }
+
+  @keyframes rotation {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;

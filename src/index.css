@@ -6,6 +6,9 @@
   box-sizing: border-box;
   font-family: "Roboto", Verdana, Geneva, Tahoma, sans-serif;
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
 
 a {
   text-decoration: none;
