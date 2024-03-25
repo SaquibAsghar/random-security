@@ -51,14 +51,16 @@ export const ToPurchaseListContainer = styled.section`
 
 export const PurchasedItemRow = styled.section`
   display: grid;
-  grid-template-columns: 0.6fr 2fr 1fr;
+  grid-template-columns: 0.6fr 313px 1fr;
   grid-template-rows: 30px;
   gap: 20px;
   margin-block: 10px;
 `;
 
 export const PurchaseItemProductName = styled.span``;
-export const PurchaseItemFeaturesList = styled.span``;
+export const PurchaseItemFeaturesList = styled.span`
+  word-wrap: break-word;
+`;
 export const PurchaseItemPrice = styled.span`
   text-align: end;
 `;

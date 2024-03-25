@@ -139,12 +139,19 @@ const CartModal = (props) => {
               <div
                 style={{
                   display: "grid",
-                  gridTemplateColumns: "0.6fr 2fr 1fr",
+                  gridTemplateColumns: "0.6fr 313px 1fr",
                   gap: "20px",
                 }}
               >
                 {["Product", "Feature", "Price"].map((label) => {
-                  return <div key={label} style={{textAlign: `${label=== 'Price' && 'end'}`}}>{label}</div>;
+                  return (
+                    <div
+                      key={label}
+                      style={{ textAlign: `${label === "Price" && "end"}` }}
+                    >
+                      {label}
+                    </div>
+                  );
                 })}
               </div>
             </ToPurchaseListContainer>

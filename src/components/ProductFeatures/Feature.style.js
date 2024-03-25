@@ -3,8 +3,9 @@ import styled from "styled-components";
 export const FeaturesWrapper = styled.div`
   overflow-y: scroll;
   flex-grow: 3;
-  margin-block: 22px;
+  margin-block: 13px;
   margin-inline-end: 5px;
+  position: relative;
   &::-webkit-scrollbar {
     width: 9px;
   }
@@ -15,12 +16,19 @@ export const FeaturesWrapper = styled.div`
 `;
 
 export const FeaturesHeading = styled.h3`
-  margin-block: 15px;
+  height: 60px;
+  background-color: #fff;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  padding-inline: 20px;
 `;
 
 export const FeaturesCardsContainer = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+  padding-inline: 20px;
 `;
 
 export const FeatureCard = styled.div`

@@ -23,6 +23,8 @@ import {
 } from "./Feature.style";
 
 let featureToPurchase = [];
+let featureToPurchase1 = {};
+let productFeatureAdded = {};
 const Features = () => {
   const [selectedFeature, setSelectedFeature] = useState("");
   const { username, productId } = useParams();
@@ -43,14 +45,18 @@ const Features = () => {
     (state) => state.cart.cartItems[username] || {}
   );
 
+  let presentProductIdFeatureInCart = useSelector(
+    (state) => state.cart[productId]
+  );
 
   console.log({
     featureToPurchase,
+    featureToPurchase1,
   });
 
-
   console.log({
     featureToPurchase,
+    featureToPurchase1,
   });
 
   console.log(purchaseCart);
@@ -72,23 +78,61 @@ const Features = () => {
     console.log({
       featureToPurchase,
       featureId,
+      featureToPurchase1,
     });
     // Show Remove button if feature is present inside the cart(featureToPurchase)
     if (featureToPurchase.includes(featureId)) {
       return (
         <Button
           onClick={() => {
-            let removeFromIndex = featureToPurchase.indexOf(featureId);
-            console.log(removeFromIndex);
-            featureToPurchase = featureToPurchase.filter(
-              (ele) => ele !== featureId
-            );
-            console.log(featureToPurchase);
-            // setSelectedFeature("");
-            dispatch(removeFromPurchase({ username, featureId }));
+            if (purchaseCart[featureId]) {
+              let removeFromIndex = featureToPurchase.indexOf(featureId);
+              let removeFromIndex2 =
+                featureToPurchase1[productId].indexOf(featureId);
+              console.log(removeFromIndex);
+              console.log(removeFromIndex2);
+              featureToPurchase = featureToPurchase.filter(
+                (ele) => ele !== featureId
+              );
+              featureToPurchase1[productId] = featureToPurchase1[
+                productId
+              ].filter((feature) => feature !== featureId);
+              console.log(featureToPurchase);
+              console.log({ featureToPurchase1 });
+              // setSelectedFeature("");
+              dispatch(removeFromPurchase({ username, featureId, productId }));
+            }
           }}
         >
           Remove
+        </Button>
+      );
+    }
+
+    if (featureToPurchase1[productId]?.includes(featureId)) {
+      return (
+        <Button
+          onClick={() => {
+            if (purchaseCart[featureId]) {
+              let removeFromIndex = featureToPurchase.indexOf(featureId);
+              let removeFromIndex2 =
+                featureToPurchase1[productId].indexOf(featureId);
+              console.log(removeFromIndex);
+              console.log(removeFromIndex2);
+              featureToPurchase = featureToPurchase.filter(
+                (ele) => ele !== featureId
+              );
+              featureToPurchase1[productId] = featureToPurchase1[
+                productId
+              ].filter((feature) => feature !== featureId);
+              console.log(featureToPurchase);
+              console.log({ featureToPurchase1 });
+              // setSelectedFeature("");
+              dispatch(removeFromPurchase({ username, featureId }));
+            }
+          }}
+        >
+          Remove (featureToPurchase1)
         </Button>
       );
     }
@@ -116,11 +160,21 @@ const Features = () => {
               } else if (!featureToPurchase.includes(featureItem)) {
                 featureToPurchase = [...featureToPurchase, featureItem];
               }
+              if (!featureToPurchase1[productId]) {
+                featureToPurchase1[productId] = [featureItem];
+              } else if (!featureToPurchase1[productId].includes(featureItem)) {
+                featureToPurchase1[productId] = [
+                  ...featureToPurchase1[productId],
+                  featureItem,
+                ];
+              }
             }
             featureToPurchase = featureToPurchase.filter((feature) => {
               if (feature.includes(productId)) return feature;
             });
+            // featureToPurchase1[productId] = featureToPurchase1[productId].filter(feature => feature.includes(productId));
             console.log(featureToPurchase);
+            console.log({ featureToPurchase1 });
             console.log(userPurchaseProductFeature);
             // filter out to-be purchase list and remove the feature if it alraedy has been purchased
             featureToPurchase = featureToPurchase.filter((feature) => {
@@ -128,12 +182,40 @@ const Features = () => {
                 return feature;
               }
             });
+
+            // filter out the features which are not purchase by user yet
+            featureToPurchase1[productId] = featureToPurchase1[
+              productId
+            ].filter((feature) => {
+              if (!userPurchaseProductFeature.includes(feature)) {
+                return feature;
+              }
+            });
+            console.log(productFeatureAdded);
+
             console.log(featureToPurchase);
+            console.log({ featureToPurchase1 });
+
+            console.log(purchaseCart);
+
+            if (presentProductIdFeatureInCart) {
+              console.log(presentProductIdFeatureInCart);
+
+              featureToPurchase1[productId] = featureToPurchase1[
+                productId
+              ].filter((ele) => {
+                if (!presentProductIdFeatureInCart.includes(ele)) {
+                  return ele;
+                }
+              });
+            }
+
+            console.log("after ", featureToPurchase1[productId]);
             const cart = {
               price,
               productId,
               featureId,
-              featureToPurchase,
+              featureToPurchase: featureToPurchase1[productId],
             };
             dispatch(addToPurchase({ username, featureId, cart }));
           }}
@@ -196,7 +278,7 @@ const Features = () => {
     <>
       <FeaturesWrapper>
         <FeaturesHeading>{product.productName} features</FeaturesHeading>
-        <div>
+        <>
           <FeaturesCardsContainer>
             {product.features.map(
               ({ type, featureId, featureName, basePrice }) => (
@@ -209,7 +291,7 @@ const Features = () => {
               )
             )}
           </FeaturesCardsContainer>
-        </div>
+        </>
       </FeaturesWrapper>
     </>
   );

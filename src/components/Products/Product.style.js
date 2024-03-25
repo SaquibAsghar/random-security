@@ -18,4 +18,5 @@ export const ProductsContainer = styled.div`
 
 export const ProductWrapper = styled.div`
   flex-grow: 1.5;
+  width: 213px;
 `;

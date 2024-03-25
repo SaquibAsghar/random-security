@@ -17,6 +17,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cartItems: {},
+  productId: [],
   lastRemovedFeatureFromCart: null,
 };
 
@@ -41,6 +42,7 @@ const cartSlice = createSlice({
             featureToPurchase: featureToPurchase,
           },
         };
+        state[productId] = featureToPurchase;
 
         return state;
       }
@@ -50,13 +52,26 @@ const cartSlice = createSlice({
           featureToPurchase: featureToPurchase,
         };
       }
+
+      if (!state[productId]) {
+        state[productId] = featureToPurchase;
+        return state;
+      }
+      let prevState = state[productId];
+      state[productId] = [...new Set([...prevState, ...featureToPurchase])];
       return state;
     },
     completePurchase: (state) => state,
     removeFromPurchase: (state, action) => {
-      const { username, featureId } = action.payload;
+      const { username, featureId, productId } = action.payload;
       console.log(featureId);
       state.lastRemovedFeatureFromCart = featureId;
+      if (!state.cartItems[username][featureId]) {
+        return state;
+      }
+      state[productId] = state[productId].filter(
+        (feature) => feature !== featureId
+      );
       delete state.cartItems[username][featureId];
       // state.cartItems[username] = state.cartItems[username].filter(
       //   (purchaseItem) => purchaseItem !== cart
