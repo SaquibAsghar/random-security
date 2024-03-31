@@ -6,15 +6,21 @@ export const Nav = styled.nav`
   top: 70px;
   bottom: 20px;
   background-color: #fff;
-  height: 50px;
+  height: 70px;
   padding-block-start: 10px;
   z-index: 10;
+  display: flex;
+  align-items: center;
   & > .anchor-link {
     text-decoration: none;
     color: #000;
     margin-inline-end: 20px;
     font-size: 18px;
     font-weight: 600;
+
+    &.active {
+      color: #6e3aff;
+    }
   }
 `;
 

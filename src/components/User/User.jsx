@@ -1,10 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useSelector } from "react-redux";
 import { selectUsersSelector } from "../../features/users/usersSlice";
-import {
-  Link,
-  Outlet,
-} from "react-router-dom";
+import { NavLink, Outlet, useParams } from "react-router-dom";
 import {
   Nav,
   UserAvatarContainer,
@@ -19,6 +16,10 @@ import {
 
 const User = ({ username }) => {
   const allUser = useSelector(selectUsersSelector) || [];
+  let { productId } = useParams();
+  if (!productId) {
+    productId = "B001";
+  }
   const user = allUser.find(
     (user) => user.username.toLowerCase() === username.toLowerCase()
   );
@@ -26,15 +27,15 @@ const User = ({ username }) => {
   return (
     <>
       <Nav>
-        <Link to={`/user/${username}`} className="anchor-link">
+        <NavLink to={`/user/${username}`} end className="anchor-link">
           Dashboard
-        </Link>
-        <Link to="products/B001" className="anchor-link">
+        </NavLink>
+        <NavLink to={`products/${productId}`} className="anchor-link">
           Products
-        </Link>
-        <Link to="analytics" className="anchor-link">
+        </NavLink>
+        <NavLink to="analytics" className="anchor-link">
           Analytics
-        </Link>
+        </NavLink>
       </Nav>
       <WelcomeHeading>Welcome {user.displayname} </WelcomeHeading>
       <UserDetailWrapper>
