@@ -84,6 +84,5 @@ export const Button = styled.button`
 `;
 
 export const PurchaseNow = styled(Button)`
-  background-color: #6e3aff;
-  color: #fff;
+  color: #6e3aff;
 `;
