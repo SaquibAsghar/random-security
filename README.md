@@ -1,6 +1,6 @@
 # Random Security
 
-This was the assignment project given by [BOLSTER](https://bolster.ai/) for Frontend Developer Role
+This was the assignment project given by [BOLSTER](https://bolster.ai/) for Frontend Developer Role.
 
 This project dives into crafting user profiles that go beyond static information. Imagine a central hub where you can seamlessly switch between users with a click-down menu.  Each profile will showcase not only the user's details, but also dedicated sections for purchasing product/feature and insightful analytics.
 
